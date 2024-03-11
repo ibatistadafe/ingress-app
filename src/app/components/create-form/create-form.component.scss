@@ -1,8 +1,10 @@
 .home-form p{
+  padding-top: 0.55rem;
   text-align: left;
   font-weight: 300;
   line-height: 2;
   font-size: 1.5rem;
+  white-space: nowrap;
 }
 
 .home-form form{
@@ -14,11 +16,9 @@
   gap: 0.5rem;
   font-weight:  300;
   font-size: 1rem;
-
 }
 
 .home-form form {
-  padding: 1rem;
   align-items: start;
 }
 
