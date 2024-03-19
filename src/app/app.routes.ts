@@ -1,7 +1,12 @@
 import { Routes } from '@angular/router';
 import { CreateFormComponent } from './components/create-form/create-form.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { LoginComponent } from './pages/login/login.component';
+import { ListagemEventosComponent } from './pages/listagem-eventos/listagem-eventos.component';
 
 
 export const routes: Routes = [
-  { path: './pages/register/create-form', component: CreateFormComponent}
+  { path: '', component: ListagemEventosComponent},
+  { path: 'register', component: RegisterComponent},
+  { path: 'login', component: LoginComponent}
 ];
