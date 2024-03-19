@@ -1,0 +1,44 @@
+.content {
+    font-size: 12px;
+    background-color: #000;
+    color: #fff;
+    background-image: url("../../../assets/image/loginBackground.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+   
+  }
+  
+  button {
+    background-color: #000000;
+    color: white;
+    //padding: 14px 20px;
+    //margin: 8px 0;
+    cursor: pointer;
+    width: 14%;
+    height: 5%;
+    text-align: inherit;
+  }
+  
+  button:hover {
+    background-color: #f3ededa2;
+  }
+  
+  span {
+    display: table;
+  }
+  
+  input[type="text"] {
+    background-color: transparent;
+    border-top: transparent;
+    border-left: transparent;
+    border-right: transparent;
+    border-bottom: 1px solid white;
+  }
+  
