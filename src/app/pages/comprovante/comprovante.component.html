@@ -13,20 +13,21 @@
     <div class="box-info-ticket">
       <p>Informações do ingresso:</p>
       <p>
-        ID: <span>101, 102</span>
+        ID: <span>{{ id }}</span>
         <br />
-        Valor: R$<span>101,00</span>
+        Valor: R$<span>{{ value }}</span>
         <br />
-        Forma de Pagamento: <span>PIX/QR Code</span>
+        Forma de Pagamento: <span>{{ pagamentForm }}</span>
       </p>
 
-      <p>Nome nos ingressos: <span>Everton, Jessica</span></p>
+      <p>Nome nos ingressos: <span>{{ names }}</span></p>
+
       <li>
         Apresentar os ingressos na entrada, no dia correspondente ao DAY CAMP.
       </li>
     </div>
-    <button>
+    <a (click)="navigateToEventPage()">
       <img src="../../../assets/image/iconHome.png" alt="Icone Home" />
-    </button>
+    </a>
   </div>
 </div>

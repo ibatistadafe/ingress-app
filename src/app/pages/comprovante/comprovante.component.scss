@@ -71,15 +71,16 @@
   font-size: 13px;
 }
 
-button{
+a{
   border-radius: 300px;
   padding: 10px;
   border: solid 1px black;
   background-color: white;
   margin: 30px 0;
+  cursor: pointer;
 }
 
-button img{
+a img{
   width: 40px;
   height: 40px;
 }
