@@ -1,16 +1,27 @@
 <app-header></app-header>
 
 <div class="content">
-    <h3>EVENTOS</h3>
+  
+    <div class="box-title pt-4">
+        <div class="hamburger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <h3 class="title">EVENTOS</h3>
+    </div>
 
-    <div>
-        <div>
-            <img src="../../../assets/image/cultos.png" alt="Imagem que representa o culto">
-            <span>NOSSOS CULTOS AOS DOMINGOS ÁS 10h e 18:30h</span>
+
+    <div class="list-events d-flex flex-column">
+        <div class="event d-flex align-items-center justify-content-center" *ngFor="let event of listEvents">
+            <div class="image-description d-flex align-items-center mx-1">
+                <img [src]="'../../../assets/image/' + event.image + '.png'" [alt]="event.description">
+                <span>{{event.description}}</span>
+            </div>
+            <div class="status mx-4">
+                <span>{{event.status}}</span>
+            </div>
         </div>
-     
-        <div>
-            <span>DISPONÍVEL</span>
-        </div>
+
     </div>
 </div>
