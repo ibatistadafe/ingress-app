@@ -1,31 +1,34 @@
 <div class="home-form">
-  <form >
+  <form  [formGroup]="createForm" (ngSubmit)="submitForm()">
     <div class="caixa-titulo">
       <h1>Crie uma conta</h1>
       <hr id="linha">
     </div>
 
     <p>Preencha os campos abaixo</p>
-    <span>Digite seu Nome completo:</span>
-    <input type="text">
+    <span for="fullname">Digite seu Nome completo:</span>
+    <input type="text" formControlName="fullname" required>
+    <div *NgIf="createForm.get('fullname').hasError('required')" class="validation-error">
+      o nome é obrigatório!
+    </div>
 
-    <span>Digite seu CPF:</span>
-    <input type="text">
+    <span for="cpf">Digite seu CPF:</span>
+    <input type="text" required>
 
-    <span>Digite seu E-mail:</span>
-    <input type="text">
+    <span for="email" >Digite seu E-mail:</span>
+    <input type="text" required>
 
-    <span>Confirme seu E-mail:</span>
-    <input type="text">
+    <span for="emailConfirm">Confirme seu E-mail:</span>
+    <input type="text" required>
 
-    <span>Data de Nascimento:</span>
+    <span for="date" required>Data de Nascimento:</span>
     <input type="date">
 
-    <span>Telefone:</span>
+    <span for="phone" required>Telefone:</span>
     <input type="text">
 
     <div class="container-button">
-      <button>Continuar</button>
+      <button type="submit" [disabled]="createForm.invalid">Continuar</button>
     </div>
   </form>
 </div>
