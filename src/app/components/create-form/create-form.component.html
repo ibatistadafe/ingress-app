@@ -1,34 +1,104 @@
 <div class="home-form">
-  <form  [formGroup]="createForm" (ngSubmit)="submitForm()">
+  <form
+    name="form"
+    #f="ngForm"
+    (ngSubmit)="f.form.valid && onSubmit()">
     <div class="caixa-titulo">
       <h1>Crie uma conta</h1>
       <hr id="linha">
     </div>
 
     <p>Preencha os campos abaixo</p>
+
+    <!-- campo nome -->
+
     <span for="fullname">Digite seu Nome completo:</span>
-    <input type="text" formControlName="fullname" required>
-    <div *NgIf="createForm.get('fullname').hasError('required')" class="validation-error">
-      o nome é obrigatório!
+    <input type="text"
+    name="fullname"
+    [(ngModel)]="form.fullname"
+    required
+    #fullname="ngModel">
+
+    <!-- div de errors -->
+    <div *ngIf="f.submitted && fullname.errors" class="invalid-feedback">
+      O campo nome é obrigatório!
     </div>
 
+    <!-- campo CPF -->
+
     <span for="cpf">Digite seu CPF:</span>
-    <input type="text" required>
+
+    <input type="number"
+    name="cpf"
+    [(ngModel)]="form.cpf"
+    maxlength="11"
+    required
+    #cpf="ngModel">
+
+    <div *ngIf="f.submitted && cpf.errors" class="invalid-feedback">
+      o campo cpf é obrigatório!
+    </div>
+
+    <!-- campo email -->
 
     <span for="email" >Digite seu E-mail:</span>
-    <input type="text" required>
+    <input type="email"
+    name="email"
+    [(ngModel)]="form.email"
+    required
+    #email="ngModel">
+
+    <div *ngIf="f.submitted && email.errors" class="invalid-feedback">
+      o campo email é obrigatório!
+    </div>
+
+    <!-- campo Confirmação do email -->
 
     <span for="emailConfirm">Confirme seu E-mail:</span>
-    <input type="text" required>
+    <input type="email"
+    name="confirmEmail"
+    [(ngModel)]="form.confirmEmail"
+    required
+    #confirmEmail="ngModel"
+    required>
+
+    <div *ngIf="f.submitted && confirmEmail.errors" class="invalid-feedback">
+      Os emails são diferentes!
+    </div>
+
+    <!-- campo data de nascimento -->
 
     <span for="date" required>Data de Nascimento:</span>
-    <input type="date">
+    <input type="date"
+    name="dateBirthDay"
+    [(ngModel)]="form.dateBirthDay"
+    required
+    #dateBirthDay="ngModel"
+    required>
+
+    <div *ngIf="f.submitted && dateBirthDay.errors" class="invalid-feedback">
+      o campo data de nascimento é obrigatório!
+    </div>
 
     <span for="phone" required>Telefone:</span>
-    <input type="text">
+    <input type="number"
+    name="phone"
+    [(ngModel)]="form.phone"
+    required
+    #phone="ngModel"
+    required>
+
+    <div *ngIf="f.submitted && confirmEmail.errors" class="invalid-feedback">
+      o campo telefone é obrigatório!
+    </div>
 
     <div class="container-button">
-      <button type="submit" [disabled]="createForm.invalid">Continuar</button>
+      <button type="submit" >Continuar</button>
     </div>
   </form>
 </div>
+
+<!--
+
+
+ -->

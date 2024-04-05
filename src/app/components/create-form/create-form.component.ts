@@ -1,39 +1,41 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule,  ReactiveFormsModule, Validators } from '@angular/forms';
 
+import { Component } from '@angular/core';
+import { FormsModule, NgForm} from '@angular/forms';
+
+
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-create-form',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './create-form.component.html',
   styleUrl: './create-form.component.scss'
 })
 export class CreateFormComponent {
-  createForm!: FormGroup
 
-  constructor(private fb: FormBuilder){
-    this.createForm = this.fb.group({
-      fullname: ['', Validators.required]
-    })
+  form = {
+    fullname: '',
+    cpf: '',
+    email: '',
+    confirmEmail: '',
+    dateBirthDay: '',
+    phone: ''
   }
 
-  // ngOnInit(): void{
-  //   this.createForm = new FormGroup({
-  //     id: new FormControl(''),
+  // profileForm = new FormGroup({
+  //   fullname: new FormControl('')
+  // });
 
-  //     // cpf: new FormControl('', [Validators.required]),
-  //     // email: new FormControl('', [Validators.required]),
-  //     // emailConfirm: new FormControl('', [Validators.required]),
-  //     // date: new FormControl('', [Validators.required]),
-  //     // phone: new FormControl('', [Validators.required]),
-  //   })
+  // get fullnameControl() {
+  //   return this.profileForm.get('fullname');
   // }
 
+  onSubmit(): void {
+    console.log(JSON.stringify(this.form, null, 2));
+  }
 
-
-  submitForm(){
-    console.log("aqui vão estar os dados do forms")
+  onReset(form: NgForm): void {
+    form.reset();
   }
 }
