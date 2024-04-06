@@ -23,13 +23,7 @@ export class CreateFormComponent {
     phone: ''
   }
 
-  // profileForm = new FormGroup({
-  //   fullname: new FormControl('')
-  // });
 
-  // get fullnameControl() {
-  //   return this.profileForm.get('fullname');
-  // }
 
   onSubmit(): void {
     console.log(JSON.stringify(this.form, null, 2));
