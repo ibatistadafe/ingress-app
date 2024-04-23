@@ -28,13 +28,14 @@
 
     <span for="cpf">Digite seu CPF:</span>
 
-    <input type="number"
+    <input type="text"
     class="form-control"
+    mask="000.000.000-00"
     name="cpf"
     [(ngModel)]="form.cpf"
     required
     minlength="11"
-    maxlength="11"
+    maxlength="14"
     #cpf="ngModel">
 
     <div *ngIf="f.submitted && cpf.errors" class="invalid-feedback">
@@ -89,12 +90,13 @@
 
     <span for="phone" required>Telefone:</span>
     <input  type="text"
+    mask="(00) 00000-0000"
     class="form-control"
     name="username"
     [(ngModel)]="form.phone"
     required
     minlength="11"
-    maxlength="11"
+    maxlength="15"
     #phone="ngModel">
 
     <div *ngIf="f.submitted && phone.errors" class="invalid-feedback">
@@ -109,3 +111,5 @@
     </div>
   </form>
 </div>
+
+

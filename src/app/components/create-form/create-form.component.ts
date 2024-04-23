@@ -4,16 +4,17 @@ import { FormsModule, NgForm} from '@angular/forms';
 
 
 import { CommonModule } from '@angular/common';
+import { NgxMaskDirective } from 'ngx-mask';
+
 
 @Component({
   selector: 'app-create-form',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, NgxMaskDirective],
   templateUrl: './create-form.component.html',
   styleUrl: './create-form.component.scss'
 })
 export class CreateFormComponent {
-
   form = {
     fullname: '',
     cpf: '',
@@ -22,8 +23,6 @@ export class CreateFormComponent {
     dateBirthDay: '',
     phone: ''
   }
-
-
 
   onSubmit(): void {
     console.log(JSON.stringify(this.form, null, 2));
