@@ -27,9 +27,7 @@ export class CreateFormComponent {
     phone: ''
   }
 
-  constructor(private route: Router ){
-
-  }
+  constructor(private route: Router ){ }
 
   onSubmit(): void {
     console.log(JSON.stringify(this.form, null, 2));

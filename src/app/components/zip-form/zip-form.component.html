@@ -1,5 +1,9 @@
 <div class="home-form">
-  <form>
+  <form
+  name="form"
+  #f="ngForm"
+  (ngSubmit)="f.form.valid && onSubmit()"
+  >
     <p>Preencha com o seu endereço:</p>
     <span>Cep:</span>
     <input type="text">
