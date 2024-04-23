@@ -1,10 +1,13 @@
 
 import { Component } from '@angular/core';
-import { FormsModule, NgForm} from '@angular/forms';
+import { FormsModule,  NgForm} from '@angular/forms';
 
 
 import { CommonModule } from '@angular/common';
 import { NgxMaskDirective } from 'ngx-mask';
+import { Router } from '@angular/router';
+
+
 
 
 @Component({
@@ -24,8 +27,13 @@ export class CreateFormComponent {
     phone: ''
   }
 
+  constructor(private route: Router ){
+
+  }
+
   onSubmit(): void {
     console.log(JSON.stringify(this.form, null, 2));
+    this.route.navigate(["/zipcode"]);
   }
 
   onReset(form: NgForm): void {
