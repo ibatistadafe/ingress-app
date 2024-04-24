@@ -20,6 +20,8 @@
     maxlength="9"
     #zipcode="ngModel">
 
+    <!-- validação zip code -->
+
     <div *ngIf="f.submitted && zipcode.errors" class="invalid-feedback">
       <div *ngIf="zipcode.errors['required']"> o campo CEP é obrigatório!</div>
       <div *ngIf="zipcode.errors['minlength']">
@@ -35,6 +37,8 @@
     [(ngModel)]="form.number"
     required
     #number="ngModel">
+
+     <!-- validação number -->
 
     <div *ngIf="f.submitted && number.errors" class="invalid-feedback">
       o campo numero é obrigatório!
