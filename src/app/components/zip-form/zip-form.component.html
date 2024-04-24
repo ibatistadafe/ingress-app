@@ -1,21 +1,58 @@
 <div class="home-form">
   <form
-  name="form"
-  #f="ngForm"
-  (ngSubmit)="f.form.valid && onSubmit()"
-  >
-    <p>Preencha com o seu endereço:</p>
-    <span>Cep:</span>
-    <input type="text">
+    name="form"
+    #f="ngForm"
+    (ngSubmit)="f.form.valid && onSubmit()">
 
-    <span>Número:</span>
-    <input type="text">
+    <p>Preencha os campos abaixo</p>
 
-    <span>Complemento:</span>
-    <input type="text">
+    <!-- campo zip code -->
+
+    <span for="zipcode">Cep:</span>
+
+    <input type="text"
+    class="form-control"
+    mask="00000-000"
+    name="zipcode"
+    [(ngModel)]="form.zipcode"
+    required
+    minlength="8"
+    maxlength="9"
+    #zipcode="ngModel">
+
+    <div *ngIf="f.submitted && zipcode.errors" class="invalid-feedback">
+      <div *ngIf="zipcode.errors['required']"> o campo CEP é obrigatório!</div>
+      <div *ngIf="zipcode.errors['minlength']">
+        o campo zipcode precisa dos 8 characters
+      </div>
+    </div>
+
+    <!-- campo numero -->
+
+    <span for="number" >Número:</span>
+    <input type="number"
+    name="number"
+    [(ngModel)]="form.number"
+    required
+    #number="ngModel">
+
+    <div *ngIf="f.submitted && number.errors" class="invalid-feedback">
+      o campo numero é obrigatório!
+    </div>
+
+    <!-- campo Complemento -->
+
+    <span for="complement">Complemento:</span>
+    <input type="complement"
+    name="complement"
+    [(ngModel)]="form.complement"
+    #complement="ngModel"
+    >
 
     <div class="container-button">
-      <button>Continuar</button>
+      <button type="submit">Continuar</button>
     </div>
   </form>
 </div>
+
+

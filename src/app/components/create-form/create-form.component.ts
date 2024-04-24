@@ -27,11 +27,12 @@ export class CreateFormComponent {
     phone: ''
   }
 
-  constructor(private route: Router ){ }
+  constructor(private router: Router ){ }
 
   onSubmit(): void {
+    console.log('EU ESTOU SENDO EXECUTADO')
     console.log(JSON.stringify(this.form, null, 2));
-    this.route.navigate(["/zipcode"]);
+    this.router.navigate(["/zipcode"]);
   }
 
   onReset(form: NgForm): void {
