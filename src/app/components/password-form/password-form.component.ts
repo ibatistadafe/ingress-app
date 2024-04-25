@@ -15,13 +15,22 @@ export class PasswordFormComponent {
   form = {
     password: '',
     confirmPassword:  '',
-    member: null
+    member: false
   };
+
+  updateMemberValue(checked: boolean): void{
+    this.form.member = checked;
+  }
 
   constructor(private router: Router){ }
   onSubmit(): void {
+    if(this.form.password === this.form.confirmPassword){
       console.log(JSON.stringify(this.form, null, 2));
       this.router.navigate(["/success"]);
+    }else{
+      window.alert("as senhas estão diferentes!")
+    }
+
   }
 
   onReset(form: NgForm): void {
