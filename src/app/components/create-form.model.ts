@@ -1,9 +1,9 @@
 export type PersonalData = {
   id?: number
   fullname: string
-  cpf: string
+  cpf: number
   email: string
-  emailConfim: string
-  date: Date
+  confirmEmail: string
+  dateBirthDay: Date
   phone: number
 }

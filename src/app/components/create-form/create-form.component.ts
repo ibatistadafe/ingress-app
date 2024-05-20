@@ -6,6 +6,8 @@ import { FormsModule,  NgForm} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgxMaskDirective } from 'ngx-mask';
 import { Router } from '@angular/router';
+import { PersonalData } from '../create-form.model';
+import { CreateFormService } from '../../service/create-form.service';
 
 
 
@@ -18,21 +20,28 @@ import { Router } from '@angular/router';
   styleUrl: './create-form.component.scss'
 })
 export class CreateFormComponent {
-  form = {
+  form : PersonalData= {
     fullname: '',
-    cpf: '',
+    cpf: 0,
     email: '',
     confirmEmail: '',
-    dateBirthDay: '',
-    phone: ''
+    dateBirthDay: new Date(),
+    phone: 0
   }
 
-  constructor(private router: Router ){ }
+  constructor(private router: Router,private user: CreateFormService ){ }
 
   onSubmit(): void {
-    console.log('EU ESTOU SENDO EXECUTADO')
-    console.log(JSON.stringify(this.form, null, 2));
-    this.router.navigate(["/zipcode"]);
+    //aqui preciso chamar um metodo que consome api
+    try{
+      this.user.registerUserData(this.form).subscribe(()=>{
+        console.log(JSON.stringify(this.form, null, 2));
+        this.router.navigate(["/zipcode"]);
+      })
+    }catch(error){
+      console.log(`Deu erro ${error}`)
+    }
+
   }
 
   onReset(form: NgForm): void {
