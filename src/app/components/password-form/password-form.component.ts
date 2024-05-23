@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import {  FormsModule, NgForm } from '@angular/forms';
 import { NgxMaskDirective } from 'ngx-mask';
+import { PasswordData } from './password-form.model';
+import { PasswordFormService } from '../../service/password-form.service';
 
 @Component({
   selector: 'app-password-form',
@@ -12,7 +14,7 @@ import { NgxMaskDirective } from 'ngx-mask';
   styleUrl: './password-form.component.scss'
 })
 export class PasswordFormComponent {
-  form = {
+  form : PasswordData = {
     password: '',
     confirmPassword:  '',
     member: false
@@ -22,15 +24,20 @@ export class PasswordFormComponent {
     this.form.member = checked;
   }
 
-  constructor(private router: Router){ }
+  constructor(private router: Router, private userPassword: PasswordFormService){ }
   onSubmit(): void {
-    if(this.form.password === this.form.confirmPassword){
-      console.log(JSON.stringify(this.form, null, 2));
-      this.router.navigate(["/success"]);
-    }else{
-      window.alert("as senhas estão diferentes!")
+    try{
+      if(this.form.password === this.form.confirmPassword){
+        this.userPassword.registerUserPassword(this.form).subscribe(()=>{
+          console.log(JSON.stringify(this.form, null, 2));
+          this.router.navigate(["/success"]);
+        })
+      }else{
+        window.alert("as senhas estão diferentes!")
+      }
+    }catch(error){
+      console.log(`Deu erro ${error}`)
     }
-
   }
 
   onReset(form: NgForm): void {

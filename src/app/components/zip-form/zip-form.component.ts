@@ -5,6 +5,8 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 import { Router } from '@angular/router';
+import { ZipcodeData } from '../zip-form.model';
+import { ZipFormService } from '../../service/zip-form.service';
 
 @Component({
   selector: 'app-zip-form',
@@ -14,17 +16,24 @@ import { Router } from '@angular/router';
   styleUrl: './zip-form.component.scss'
 })
 export class ZipFormComponent {
-  form = {
-    zipcode: '',
-    number:  '',
-    complement: ''
+  form : ZipcodeData = {
+    zipcode: "",
+    number:  "",
+    complement: ""
   }
 
-  constructor(private route: Router){ }
+  constructor(private route: Router, private userZip : ZipFormService){ }
 
   onSubmit(): void{
-    console.log(JSON.stringify(this.form, null, 2));
-    this.route.navigate(["/password"]);
+    try{
+      this.userZip.registerZipcodeData(this.form).subscribe(()=>{
+        console.log(JSON.stringify(this.form, null, 2));
+        this.route.navigate(["/password"]);
+      })
+    }catch(error){
+      console.log(`Deu erro ${error}`)
+    }
+
   }
 
   onResed(form: NgForm):void{
