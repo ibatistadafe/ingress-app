@@ -5,10 +5,12 @@ import { LoginComponent } from './pages/login/login.component';
 import { ListagemEventosComponent } from './pages/listagem-eventos/listagem-eventos.component';
 import { ComprovanteComponent } from './pages/comprovante/comprovante.component';
 import { AdicionaMaisIngressoComponent } from './pages/adiciona-mais-ingresso/adiciona-mais-ingresso.component';
+import { homeComponent } from './pages/home/home.component';
 
 
 export const routes: Routes = [
-  { path: '', component: AdicionaMaisIngressoComponent},
+  { path: '', component: homeComponent},
+  { path: 'adiciona-mais-ingresso', component: AdicionaMaisIngressoComponent},
   { path: 'lista-eventos', component: ListagemEventosComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'login', component: LoginComponent},
