@@ -1,0 +1,34 @@
+.content {
+    background: #000000;
+    height: 100vh;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.form-footer {
+    display: flex;
+    justify-content: center
+}
+
+.form-footer .btn-adicionar {
+    margin-top: 40px;
+    width: 204px;
+    height: 42px;
+    border-radius: 5px;
+    background-color: #11DD32;
+    color: #fff;
+}
+
+label {
+    font-size: 12px;
+}
+
+#input-name {
+    width: 276px;
+}
