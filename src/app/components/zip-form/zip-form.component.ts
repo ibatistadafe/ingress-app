@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { ZipcodeData } from '../zip-form.model';
 import { ZipFormService } from '../../service/zip-form.service';
+import { LoaderService } from '../../service/loader.service';
 
 @Component({
   selector: 'app-zip-form',
@@ -22,9 +23,11 @@ export class ZipFormComponent {
     complement: ""
   }
 
-  constructor(private route: Router, private userZip : ZipFormService){ }
+  constructor(private route: Router, private userZip : ZipFormService, private loaderService: LoaderService ){ }
 
   onSubmit(): void{
+    this.loaderService.setProgress("90%")
+
     try{
       this.userZip.registerZipcodeData(this.form).subscribe(()=>{
         console.log(JSON.stringify(this.form, null, 2));

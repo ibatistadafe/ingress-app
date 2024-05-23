@@ -5,6 +5,7 @@ import {  FormsModule, NgForm } from '@angular/forms';
 import { NgxMaskDirective } from 'ngx-mask';
 import { PasswordData } from './password-form.model';
 import { PasswordFormService } from '../../service/password-form.service';
+import { LoaderService } from '../../service/loader.service';
 
 @Component({
   selector: 'app-password-form',
@@ -24,8 +25,9 @@ export class PasswordFormComponent {
     this.form.member = checked;
   }
 
-  constructor(private router: Router, private userPassword: PasswordFormService){ }
+  constructor(private router: Router, private userPassword: PasswordFormService, private loaderService: LoaderService ){ }
   onSubmit(): void {
+    this.loaderService.setProgress("100%")
     try{
       if(this.form.password === this.form.confirmPassword){
         this.userPassword.registerUserPassword(this.form).subscribe(()=>{

@@ -1,5 +1,7 @@
+import { LoaderService } from './../../service/loader.service';
+import { LoaderFormComponent } from './../loader-form/loader-form.component';
 
-import { Component } from '@angular/core';
+import {  Component, OnInit, ViewChild } from '@angular/core';
 import { FormsModule,  NgForm} from '@angular/forms';
 
 
@@ -19,7 +21,8 @@ import { CreateFormService } from '../../service/create-form.service';
   templateUrl: './create-form.component.html',
   styleUrl: './create-form.component.scss'
 })
-export class CreateFormComponent {
+export class CreateFormComponent  {
+
   form : PersonalData= {
     fullname: '',
     cpf: 0,
@@ -29,19 +32,21 @@ export class CreateFormComponent {
     phone: 0
   }
 
-  constructor(private router: Router,private user: CreateFormService ){ }
+  constructor(private router: Router,private user: CreateFormService, private loaderService: LoaderService ){ }
 
   onSubmit(): void {
-    //aqui preciso chamar um metodo que consome api
+    this.loaderService.setProgress("60%")
+
+    // aqui preciso chamar um metodo que consome api
     try{
       this.user.registerUserData(this.form).subscribe(()=>{
         console.log(JSON.stringify(this.form, null, 2));
         this.router.navigate(["/zipcode"]);
+
       })
     }catch(error){
       console.log(`Deu erro ${error}`)
     }
-
   }
 
   onReset(form: NgForm): void {
