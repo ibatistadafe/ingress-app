@@ -4,12 +4,12 @@ import { HeaderComponent } from "../../components/header/header.component"
 import { LoaderFormComponent } from '../../components/loader-form/loader-form.component';
 
 @Component({
-  selector: 'app-register',
+  selector: 'app-registrar',
   standalone: true,
   imports: [ CreateFormComponent, HeaderComponent, LoaderFormComponent ],
-  templateUrl: './register.component.html',
-  styleUrl: './register.component.scss'
+  templateUrl: './registrar.component.html',
+  styleUrl: './registrar.component.scss'
 })
-export class RegisterComponent {
+export class RegistrarComponent {
 
 }

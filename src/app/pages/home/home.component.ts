@@ -12,7 +12,7 @@ export class homeComponent {
 
   constructor(private router: Router) {}
  public navegarParaTelaCadastrar() : void {
-  this.router.navigate(['/register']);
+  this.router.navigate(['/registrar']);
  }
 
  public navegarParaTelaLogin() : void {
