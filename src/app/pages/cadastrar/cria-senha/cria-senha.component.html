@@ -1,0 +1,54 @@
+<div class="container">
+  <app-header></app-header>
+
+  <!-- aqui vou colocar o loader -->
+  <app-loader-form  [width]="porcentagemLargura"></app-loader-form>
+
+  <div class="caixa-titulo">
+    <h1>Crie uma conta</h1>
+    <hr id="linha">
+  </div>
+
+  <div class="home-form">
+    <form  [formGroup]="form" (ngSubmit)="enviaFormulario()">
+      <p>Quase lá, agora crie uma senha!</p>
+  
+      <label for="senha">Senha:</label>
+      <input type="text" id="senha" formControlName="senha">
+      @if(form.get('senha').hasError('required') && form.get('senha').touched) {
+        <div>
+          <span class="error-message">
+            O campo senha precisa ser preenchido.
+          </span>
+        </div>
+      }
+  
+  
+      <label for="confirmar_senha">Confirmar senha:</label>
+      <input type="text" id="confirmar_senha" formControlName="confirmar_senha">
+  
+      @if(form.get('confirmar_senha').hasError('required') && form.get('confirmar_senha').touched) {
+        <div>
+          <span class="error-message">
+            O campo de confirmar email precisa ser preenchido.
+          </span>
+        </div>
+      }
+  
+      @if(form.get('confirmar_senha').hasError('senhasNaoCoincidem')) {
+        <div>
+          <span class="error-message">
+            Os senhas não coincidem
+          </span>
+        </div>
+      }
+  
+      <div class="container-button">
+        <button type="submit" [disabled]="form.invalid" [ngClass]="{'disabled': !form.valid}">Continuar</button>
+      </div>
+    </form>
+  </div>
+  
+</div>
+
+

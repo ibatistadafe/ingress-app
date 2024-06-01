@@ -1,24 +1,29 @@
-import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { CreateFormComponent } from '../../../components/create-form/create-form.component';
+import { HeaderComponent } from "../../../components/header/header.component"
+import { LoaderFormComponent } from '../../../components/loader-form/loader-form.component';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-create-form',
+  selector: 'dados-pessoais',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, NgxMaskDirective, NgxMaskPipe],
+  imports: [ CreateFormComponent, HeaderComponent, LoaderFormComponent, ReactiveFormsModule, CommonModule, NgxMaskDirective, NgxMaskPipe],
   providers: [provideNgxMask()],
-  templateUrl: './create-form.component.html',
-  styleUrl: './create-form.component.scss'
+  templateUrl: './dados-pessoais.component.html',
+  styleUrl: './dados-pessoais.component.scss'
 })
-export class CreateFormComponent implements OnInit {
-
+export class DadosPessoaisComponent {
+  porcentagemLargura: string;
   form: FormGroup;
   constructor(
     private fb: FormBuilder,
     private router: Router
-    ) { }
+    ) { 
+      this.porcentagemLargura = '33%';
+    }
   ngOnInit(): void {
     this.form = this.fb.group({
       nome_completo: new FormControl('', Validators.required),
@@ -44,3 +49,4 @@ export class CreateFormComponent implements OnInit {
  console.log('Passamos aqui', this.form.value)
   }
 }
+

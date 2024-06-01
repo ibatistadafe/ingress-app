@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-loader-form',
@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './loader-form.component.scss'
 })
 export class LoaderFormComponent {
-
+  @Input() width: string;
 }

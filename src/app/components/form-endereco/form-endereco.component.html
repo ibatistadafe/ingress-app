@@ -1,0 +1,33 @@
+<div class="home-form">
+  <form  [formGroup]="form" (ngSubmit)="enviaFormulario()">
+    <p>Preencha com o seu endereço:</p>
+
+    <label for="cep">Cep:</label>
+    <input type="text" id="cep" formControlName="cep">
+    @if(form.get('cep').hasError('required') && form.get('cep').touched) {
+      <div>
+        <span class="error-message">
+          O campo cep precisa ser preenchido.
+        </span>
+      </div>
+    }
+
+
+    <label for="numero">Número:</label>
+    <input type="text" id="numero" formControlName="numero" mask="000.000.000-00">
+    @if(form.get('numero').hasError('required') && form.get('numero').touched) {
+      <div>
+        <span class="error-message">
+          O campo numero precisa ser preenchido.
+        </span>
+      </div>
+    }
+
+    <label for="complemento">Complemento:</label>
+    <input type="text" id="complemento" formControlName="complemento">
+
+    <div class="container-button">
+      <button type="submit" [disabled]="form.invalid" [ngClass]="{'disabled': !form.valid}">Continuar</button>
+    </div>
+  </form>
+</div>
