@@ -58,6 +58,12 @@
           </span>
         </div>
       }
+      <div class="centered-container">
+        <div class="checkbox-container">
+            <label for="membro" class="checkbox-label">Você é um membro?</label>
+            <input type="checkbox" id="membro" formControlName="membro" class="checkbox-input">
+        </div>
+      </div>
   
       <div class="container-button">
         <button type="submit" [disabled]="form.invalid" [ngClass]="{'disabled': !form.valid}">Continuar</button>

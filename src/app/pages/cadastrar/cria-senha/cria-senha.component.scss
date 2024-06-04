@@ -75,7 +75,7 @@ h1{
   line-height: 1.7;
   letter-spacing: 1px;
 
-  width: 10rem;
+  width: 167px;
   padding: 0.5rem;
   border-radius: 7px;
   border: 0;
@@ -83,6 +83,7 @@ h1{
   color: aliceblue;
   outline: none;
   cursor: pointer;
+  
 }
 
 .error-message {
@@ -94,6 +95,24 @@ h1{
 .disabled {
   background-color: #ccc !important;
   cursor: not-allowed !important;
+}
+
+.centered-container {
+ margin: 0 auto;
+}
+
+.checkbox-container {
+  display: flex;
+  margin: 0 auto;
+}
+
+.checkbox-label {
+  width: 140px;
+  font-size: 14px;
+}
+
+.checkbox-input {
+  width: 30px !important;
 }
 
 

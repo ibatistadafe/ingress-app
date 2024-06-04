@@ -51,7 +51,7 @@ export class DadosPessoaisComponent {
   //this.router.navigate(['/form-endereco']);
   //console.log('Passamos aqui', this.form.value)
 
-  let dadosPessoais =  new DadosPessoais();
+  const dadosPessoais =  new DadosPessoais();
 
    dadosPessoais.nomeCompleto = this.form.value.nome_completo;
    dadosPessoais.cpf = this.form.value.cpf;

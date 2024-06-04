@@ -7,6 +7,7 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { SessionService } from '../../../services/session.service';
+import { Endereco } from '../../../model/cadastro/endereco.model';
 
 @Component({
   selector: 'endereco',
@@ -28,7 +29,6 @@ export class EnderecoComponent {
       this.porcentagemLargura = '50%';
      }
   ngOnInit(): void {
- console.log('Bora vê?: ', this._session.getDadosPessoais())
 
     this.form = this.fb.group({
       rua: new FormControl('', Validators.required),
@@ -39,8 +39,17 @@ export class EnderecoComponent {
   }
 
  public enviaFormulario(): void {
-  this.router.navigate(['/form-senha']);
- console.log('Passamos aqui', this.form.value)
+   const endereco =  new Endereco();
+
+   endereco.rua = this.form.value.rua;
+   endereco.numero = this.form.value.numero;
+   endereco.complemento = this.form.value.complemento;
+   endereco.cep = this.form.value.cep;
+
+   this._session.setEndereco(endereco);
+
+   this.router.navigate(['/form-senha']);
+
   }
 }
 
