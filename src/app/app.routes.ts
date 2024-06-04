@@ -9,6 +9,7 @@ import { FormEnderecoComponent } from './components/form-endereco/form-endereco.
 import { DadosPessoaisComponent } from './pages/cadastrar/dados-pessoais/dados-pessoais.component';
 import { EnderecoComponent } from './pages/cadastrar/endereco/endereco.component';
 import { CriaSenhaComponent } from './pages/cadastrar/cria-senha/cria-senha.component';
+import { SuccessComponent } from './pages/cadastrar/success/success.component';
 
 
 export const routes: Routes = [
@@ -18,6 +19,7 @@ export const routes: Routes = [
   { path: 'form-dados-pessoais', component: DadosPessoaisComponent },
   { path: 'form-endereco', component: EnderecoComponent },
   { path: 'form-senha', component: CriaSenhaComponent },
+  { path: 'success', component: SuccessComponent },
   { path: 'login', component: LoginComponent },
   { path: 'comprovante', component: ComprovanteComponent },
 ];

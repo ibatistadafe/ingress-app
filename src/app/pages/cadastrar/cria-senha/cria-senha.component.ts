@@ -22,13 +22,23 @@ export class CriaSenhaComponent {
   (private fb: FormBuilder,
     private router: Router
     ) {
-      this.porcentagemLargura = '100%';
+      this.porcentagemLargura = '75%';
      }
   ngOnInit(): void {
     this.form = this.fb.group({
-      senha: new FormControl('', Validators.required),
-      confirmar_senha: new FormControl('', Validators.required),
+      senha: new FormControl('', [Validators.required, Validators.minLength(8), this.validaSeExisteCaractereEspecial()]),
+      confirmar_senha: new FormControl('', [Validators.required, this.verificaSeSenhasCoincidem('senha')]),
     })
+  }
+
+  validaSeExisteCaractereEspecial() {
+    return (control: any) => {
+      const value = control.value;
+      if (value && !/[!@#$%^&*(),.?":{}|<>]/.test(value)) {
+        return { caractereEspecial: true };
+      } 
+      return null;
+    };
   }
 
   verificaSeSenhasCoincidem(matchTo: string): (control: AbstractControl) => { [key: string]: boolean } | null {
@@ -40,6 +50,7 @@ export class CriaSenhaComponent {
   }
 
  public enviaFormulario(): void {
+  this.router.navigate(['/success']);
  console.log('Passamos aqui', this.form.value)
   }
 }

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="content">
   <app-header></app-header>
 
   <!-- aqui vou colocar o loader -->
@@ -14,7 +14,7 @@
       <p>Quase lá, agora crie uma senha!</p>
   
       <label for="senha">Senha:</label>
-      <input type="text" id="senha" formControlName="senha">
+      <input type="password" id="senha" formControlName="senha">
       @if(form.get('senha').hasError('required') && form.get('senha').touched) {
         <div>
           <span class="error-message">
@@ -22,10 +22,26 @@
           </span>
         </div>
       }
+
+      @if(form.get('senha')?.hasError('minlength') && form.get('senha')?.touched) {
+        <div>
+          <span class="error-message">
+            A senha deve ter no mínimo 8 caracteres.
+          </span>
+        </div>
+      }
+
+      @if(form.get('senha')?.hasError('caractereEspecial') && form.get('senha')?.touched) {
+        <div>
+          <span class="error-message">
+            A senha deve ter no mínimo um caractere especial.
+          </span>
+        </div>
+      }
   
   
       <label for="confirmar_senha">Confirmar senha:</label>
-      <input type="text" id="confirmar_senha" formControlName="confirmar_senha">
+      <input type="password" id="confirmar_senha" formControlName="confirmar_senha">
   
       @if(form.get('confirmar_senha').hasError('required') && form.get('confirmar_senha').touched) {
         <div>

@@ -6,6 +6,8 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModu
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { SessionService } from '../../../services/session.service';
+import { DadosPessoais } from '../../../model/cadastro/dados-pessoais.model';
 
 @Component({
   selector: 'dados-pessoais',
@@ -20,9 +22,10 @@ export class DadosPessoaisComponent {
   form: FormGroup;
   constructor(
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private readonly _session: SessionService
     ) { 
-      this.porcentagemLargura = '33%';
+      this.porcentagemLargura = '25%';
     }
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -36,7 +39,7 @@ export class DadosPessoaisComponent {
     })
   }
 
-  verificaSeEmailsCoincidem(matchTo: string): (control: AbstractControl) => { [key: string]: boolean } | null {
+  public verificaSeEmailsCoincidem(matchTo: string): (control: AbstractControl) => { [key: string]: boolean } | null {
     return (control: AbstractControl) => {
       return control.value === control.parent?.get(matchTo)?.value
         ? null
@@ -45,8 +48,20 @@ export class DadosPessoaisComponent {
   }
 
  public enviaFormulario(): void {
-  this.router.navigate(['/form-endereco']);
- console.log('Passamos aqui', this.form.value)
+  //this.router.navigate(['/form-endereco']);
+  //console.log('Passamos aqui', this.form.value)
+
+  let dadosPessoais =  new DadosPessoais();
+
+   dadosPessoais.nomeCompleto = this.form.value.nome_completo;
+   dadosPessoais.cpf = this.form.value.cpf;
+   dadosPessoais.email = this.form.value.email;
+   dadosPessoais.dataNascimento = this.form.value.data_nascimento;
+   dadosPessoais.telefone = this.form.value.telefone;
+   this._session.setDadosPessoais(dadosPessoais);
+
+    this.router.navigate(['/form-endereco']);
+   
   }
 }
 

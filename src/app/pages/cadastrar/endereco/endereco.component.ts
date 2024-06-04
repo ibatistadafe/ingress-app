@@ -6,6 +6,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModu
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { SessionService } from '../../../services/session.service';
 
 @Component({
   selector: 'endereco',
@@ -20,11 +21,15 @@ export class EnderecoComponent {
   form: FormGroup;
   constructor
   (private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private readonly _session: SessionService
+
     ) {
-      this.porcentagemLargura = '66%';
+      this.porcentagemLargura = '50%';
      }
   ngOnInit(): void {
+ console.log('Bora vê?: ', this._session.getDadosPessoais())
+
     this.form = this.fb.group({
       rua: new FormControl('', Validators.required),
       numero: new FormControl('', [Validators.required]),
