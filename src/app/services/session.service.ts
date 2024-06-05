@@ -38,6 +38,4 @@ export class SessionService {
     this.criaSenha = value;
   }
 
-  
-
 }

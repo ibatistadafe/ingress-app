@@ -10,11 +10,14 @@ import { SessionService } from '../../../services/session.service';
 import { CriaSenha } from '../../../model/cadastro/cria-senha.model';
 import { CadastroService } from '../../../services/cadastro/cadastro.service';
 import { CadastroCompletoDTO } from '../../../model/cadastro/cadastro-completo.model';
+import { HttpClientModule } from '@angular/common/http';
+import { DadosPessoais } from '../../../model/cadastro/dados-pessoais.model';
+import { Endereco } from '../../../model/cadastro/endereco.model';
 
 @Component({
   selector: 'cria-senha',
   standalone: true,
-  imports: [ CreateFormComponent, HeaderComponent, LoaderFormComponent, ReactiveFormsModule, CommonModule, NgxMaskDirective, NgxMaskPipe],
+  imports: [CreateFormComponent, HeaderComponent, LoaderFormComponent, ReactiveFormsModule, CommonModule, NgxMaskDirective, NgxMaskPipe],
   providers: [provideNgxMask()],
   templateUrl: './cria-senha.component.html',
   styleUrl: './cria-senha.component.scss'
@@ -22,14 +25,15 @@ import { CadastroCompletoDTO } from '../../../model/cadastro/cadastro-completo.m
 export class CriaSenhaComponent {
   porcentagemLargura: string;
   form: FormGroup;
-  private readonly _session: SessionService;
-  private readonly _cadastroService: CadastroService;
+
   constructor
-  (private fb: FormBuilder,
-    private router: Router
+    (private fb: FormBuilder,
+      private router: Router,
+      private _session: SessionService,
+      private _cadastroService: CadastroService
     ) {
-      this.porcentagemLargura = '75%';
-     }
+    this.porcentagemLargura = '75%';
+  }
   ngOnInit(): void {
     this.form = this.fb.group({
       senha: new FormControl('', [Validators.required, Validators.minLength(8), this.validaSeExisteCaractereEspecial()]),
@@ -43,7 +47,7 @@ export class CriaSenhaComponent {
       const value = control.value;
       if (value && !/[!@#$%^&*(),.?":{}|<>]/.test(value)) {
         return { caractereEspecial: true };
-      } 
+      }
       return null;
     };
   }
@@ -56,30 +60,36 @@ export class CriaSenhaComponent {
     };
   }
 
- public enviaFormulario(): void {
-  const criaSenha =  new CriaSenha();
-  criaSenha.senha = this.form.value.senha;
-  criaSenha.membro = this.form.value.membro;
-  this._session.setSenha(criaSenha);
+  public enviaFormulario(): void {
+    let criaSenha = new CriaSenha();
+    criaSenha.senha = this.form.value.senha;
+    criaSenha.membro = this.form.value.membro;
+    this._session.setSenha(criaSenha);
 
-   const dadosPessoais = this._session.getDadosPessoais();
-   const endereco = this._session.getEndereco();
-   const senha = this._session.getSenha();
+    const dadosPessoais = this._session.getDadosPessoais();
+    const endereco = this._session.getEndereco();
+    const senha = this._session.getSenha();
 
-  this._cadastroService.criaCadastro(new CadastroCompletoDTO(
-    dadosPessoais.nomeCompleto,
-    dadosPessoais.cpf,
-    dadosPessoais.email,
-    dadosPessoais.dataNascimento,
-    dadosPessoais.telefone,
-    endereco.rua,
-    endereco.numero,
-    endereco.complemento,
-    endereco.cep,
-    senha.senha,
-    senha.membro
-  ));
-  
+    this._cadastroService.criaCadastro(this.montaCadastroCompleto(dadosPessoais, endereco, senha)).subscribe({
+      next: () => { this.router.navigate(['/success']) },
+      error: (erro) => { console.log(erro) }
+    });
+  }
+
+  private montaCadastroCompleto(dadosPessoais: DadosPessoais, endereco: Endereco, senha: CriaSenha): CadastroCompletoDTO {
+    return new CadastroCompletoDTO(
+      dadosPessoais.nomeCompleto,
+      dadosPessoais.cpf,
+      dadosPessoais.email,
+      dadosPessoais.dataNascimento,
+      dadosPessoais.telefone,
+      endereco.rua,
+      endereco.numero,
+      endereco.complemento,
+      endereco.cep,
+      senha.senha,
+      senha.membro
+    );
   }
 }
 
