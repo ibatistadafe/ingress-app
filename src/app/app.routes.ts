@@ -9,12 +9,13 @@ import { DadosPessoaisComponent } from './pages/cadastrar/dados-pessoais/dados-p
 import { EnderecoComponent } from './pages/cadastrar/endereco/endereco.component';
 import { CriaSenhaComponent } from './pages/cadastrar/cria-senha/cria-senha.component';
 import { SuccessComponent } from './pages/cadastrar/success/success.component';
+import { AuthGuard } from './services/guard/auth-guard.service';
 
 
 export const routes: Routes = [
   { path: '', component: homeComponent },
   { path: 'adiciona-mais-ingresso', component: AdicionaMaisIngressoComponent },
-  { path: 'lista-eventos', component: ListagemEventosComponent },
+  { path: 'lista-eventos', component: ListagemEventosComponent, canActivate: [AuthGuard] },
   { path: 'form-dados-pessoais', component: DadosPessoaisComponent },
   { path: 'form-endereco', component: EnderecoComponent },
   { path: 'form-senha', component: CriaSenhaComponent},

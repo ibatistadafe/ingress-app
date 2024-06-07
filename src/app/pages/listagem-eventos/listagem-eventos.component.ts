@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../../components/header/header.component';
 
 import { mockListEvents } from '../../../assets/mocks/mock';
@@ -13,8 +13,14 @@ import { CommonModule } from '@angular/common';
   templateUrl: './listagem-eventos.component.html',
   styleUrl: './listagem-eventos.component.scss'
 })
-export class ListagemEventosComponent {
+export class ListagemEventosComponent implements OnInit{
+  ngOnInit(): void {
+    console.log(localStorage.getItem('tokenIbfIngress'));
+
+  }
 
   public listEvents : Array<Events> = mockListEvents;
 
+
+  
 }

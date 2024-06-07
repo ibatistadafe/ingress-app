@@ -88,3 +88,14 @@
   position: fixed;
   margin: 15px 0;
 }
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.disabled {
+  background-color: #ccc !important;
+  cursor: not-allowed !important;
+}

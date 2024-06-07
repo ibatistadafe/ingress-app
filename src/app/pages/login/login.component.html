@@ -1,14 +1,32 @@
 <div class="content">
   <h3>LOGIN</h3>
-  <form action="">
+  <form  [formGroup]="form" (ngSubmit)="autentica()">
+
     <label for="login">Digite seu E-mail ou CPF:</label><br />
-    <input type="text" id="login" name="login" /><br />
+    <input type="text" id="login" formControlName="login" /><br />
+    @if(form.get('login').hasError('required') && form.get('login').touched) {
+      <div>
+        <span class="error-message">
+          O campo nome precisa ser preenchido.
+        </span>
+      </div>
+    }
+
+
     <label for="senha">Digite sua senha:</label><br />
-    <input type="text" id="senha" name="senha" />
+    <input type="text" id="senha" name="senha" formControlName="senha" />
+    @if(form.get('senha').hasError('required') && form.get('senha').touched) {
+      <div>
+        <span class="error-message">
+          O campo senha precisa ser preenchido.
+        </span>
+      </div>
+    }
 
     <span class="senha">Esqueceu sua senha?</span>
 
-    <button type="button" class="btn btn-dark">Login</button>
+    <button type="submit" [disabled]="form.invalid" [ngClass]="{'disabled': !form.valid}">Login</button>
+
   </form>
   <img
     src="../../../assets/logo-ibf.svg"
