@@ -14,7 +14,7 @@
 
 
     <label for="senha">Digite sua senha:</label><br />
-    <input type="text" id="senha" name="senha" formControlName="senha" />
+    <input type="password" id="senha" name="senha" formControlName="senha" />
     @if(form.get('senha').hasError('required') && form.get('senha').touched) {
       <div>
         <span class="error-message">

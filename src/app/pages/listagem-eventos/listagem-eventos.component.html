@@ -13,7 +13,9 @@
 
 
     <div class="list-events d-flex flex-column">
-        <div class="event d-flex align-items-center justify-content-center" *ngFor="let event of listEvents">
+        <div class="event d-flex align-items-center justify-content-center" 
+        *ngFor="let event of listEvents" 
+        (click)="redirecionaEvento(event.id)">
             <div class="image-description d-flex align-items-center mx-1">
                 <img [src]="'../../../assets/image/' + event.image + '.png'" [alt]="event.description">
                 <span>{{event.description}}</span>

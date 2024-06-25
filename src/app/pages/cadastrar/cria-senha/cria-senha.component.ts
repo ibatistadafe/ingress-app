@@ -17,7 +17,7 @@ import { Endereco } from '../../../model/cadastro/endereco.model';
 @Component({
   selector: 'cria-senha',
   standalone: true,
-  imports: [CreateFormComponent, HeaderComponent, LoaderFormComponent, ReactiveFormsModule, CommonModule, NgxMaskDirective, NgxMaskPipe],
+  imports: [ CreateFormComponent, HeaderComponent, LoaderFormComponent, ReactiveFormsModule, CommonModule, NgxMaskDirective, NgxMaskPipe],
   providers: [provideNgxMask()],
   templateUrl: './cria-senha.component.html',
   styleUrl: './cria-senha.component.scss'
@@ -27,13 +27,13 @@ export class CriaSenhaComponent {
   form: FormGroup;
 
   constructor
-    (private fb: FormBuilder,
-      private router: Router,
-      private _session: SessionService,
-      private _cadastroService: CadastroService
+  (private fb: FormBuilder,
+    private router: Router,
+    private _session: SessionService,
+    private _cadastroService: CadastroService
     ) {
-    this.porcentagemLargura = '75%';
-  }
+      this.porcentagemLargura = '75%';
+     }
   ngOnInit(): void {
     this.form = this.fb.group({
       senha: new FormControl('', [Validators.required, Validators.minLength(8), this.validaSeExisteCaractereEspecial()]),
@@ -47,7 +47,7 @@ export class CriaSenhaComponent {
       const value = control.value;
       if (value && !/[!@#$%^&*(),.?":{}|<>]/.test(value)) {
         return { caractereEspecial: true };
-      }
+      } 
       return null;
     };
   }
@@ -60,22 +60,22 @@ export class CriaSenhaComponent {
     };
   }
 
-  public enviaFormulario(): void {
-    let criaSenha = new CriaSenha();
-    criaSenha.senha = this.form.value.senha;
-    criaSenha.membro = this.form.value.membro;
-    this._session.setSenha(criaSenha);
+ public enviaFormulario(): void {
+  let criaSenha =  new CriaSenha();
+  criaSenha.senha = this.form.value.senha;
+  criaSenha.membro = this.form.value.membro;
+  this._session.setSenha(criaSenha);
 
-    const dadosPessoais = this._session.getDadosPessoais();
-    const endereco = this._session.getEndereco();
-    const senha = this._session.getSenha();
+   const dadosPessoais = this._session.getDadosPessoais();
+   const endereco = this._session.getEndereco();
+   const senha = this._session.getSenha();
 
-    this._cadastroService.criaCadastro(this.montaCadastroCompleto(dadosPessoais, endereco, senha)).subscribe({
-      next: () => { this.router.navigate(['/success']) },
-      error: (erro) => { console.log(erro) }
-    });
-  }
-
+  this._cadastroService.criaCadastro(this.montaCadastroCompleto(dadosPessoais, endereco, senha)).subscribe({
+    next: () =>{ this.router.navigate(['/success'])},
+    error: (erro) => {console.log(erro)}
+ });
+}
+    
   private montaCadastroCompleto(dadosPessoais: DadosPessoais, endereco: Endereco, senha: CriaSenha): CadastroCompletoDTO {
     return new CadastroCompletoDTO(
       dadosPessoais.nomeCompleto,

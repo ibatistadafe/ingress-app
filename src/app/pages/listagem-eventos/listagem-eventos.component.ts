@@ -4,6 +4,9 @@ import { HeaderComponent } from '../../components/header/header.component';
 import { mockListEvents } from '../../../assets/mocks/mock';
 import { Events } from '../../model/events.model';
 import { CommonModule } from '@angular/common';
+import { EventosService } from '../../services/eventos/eventos.service';
+import { Eventos } from '../../model/eventos/eventos.model';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,13 +17,29 @@ import { CommonModule } from '@angular/common';
   styleUrl: './listagem-eventos.component.scss'
 })
 export class ListagemEventosComponent implements OnInit{
-  ngOnInit(): void {
-    console.log(localStorage.getItem('tokenIbfIngress'));
+  public listEvents : Array<Eventos>;
 
+  constructor(
+    private _eventosService:EventosService,
+    private router:Router
+  ){}
+  ngOnInit(): void {
+    this.getListaEventos();
+  }
+  
+
+  private getListaEventos() {
+    this._eventosService.listaEventos().subscribe({
+      next: (value) => {
+        this.listEvents = value;
+      },
+      error: (error) => {
+        console.log('Erro ao listar eventos');
+      }
+    });
   }
 
-  public listEvents : Array<Events> = mockListEvents;
-
-
-  
+  public redirecionaEvento(id: string) {
+    this.router.navigate([`/evento/${id}`])
+  }
 }

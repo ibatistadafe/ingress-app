@@ -10,6 +10,6 @@ export class CadastroCompletoDTO {
     public complemento: string,
     public cep: string,
     public senha: string,
-    public membro: boolean,
+    public membro: boolean
     ){}
 }
