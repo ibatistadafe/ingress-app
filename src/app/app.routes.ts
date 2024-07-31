@@ -14,7 +14,7 @@ import { EventoComponent } from './pages/evento/evento.component';
 
 
 export const routes: Routes = [
-  { path: '', component: EventoComponent },
+  { path: '', component: homeComponent },
   { path: 'adiciona-mais-ingresso', component: AdicionaMaisIngressoComponent },
   { path: 'lista-eventos', component: ListagemEventosComponent, canActivate: [AuthGuard] },
   { path: 'evento:id', component: ListagemEventosComponent, canActivate: [AuthGuard] },
