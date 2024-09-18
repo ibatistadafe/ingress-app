@@ -1,7 +1,6 @@
 <app-header></app-header>
 
 <div class="content">
-  
     <div class="box-title pt-4">
         <div class="hamburger-menu">
             <span></span>
@@ -11,19 +10,20 @@
         <h3 class="title">EVENTOS</h3>
     </div>
 
-
     <div class="list-events d-flex flex-column">
         <div class="event d-flex align-items-center justify-content-center" 
         *ngFor="let event of listEvents" 
         (click)="redirecionaEvento(event.id)">
             <div class="image-description d-flex align-items-center mx-1">
-                <img [src]="'../../../assets/image/' + event.image + '.png'" [alt]="event.description">
-                <span>{{event.description}}</span>
+                <img *ngIf="event.arquivo" 
+                     [src]="'data:image/jpeg;base64,' + event.arquivo" 
+                     [alt]="event.descricao">
+                <h4>{{event.nome + ' | ' + event.descricao}}</h4>
             </div>
             <div class="status mx-4">
-                <span>{{event.status}}</span>
+                <h4>{{event.data}}</h4>
             </div>
         </div>
-
     </div>
 </div>
+<button (click)="redirecionaCriarEvento()">Criar Evento</button>

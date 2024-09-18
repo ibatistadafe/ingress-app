@@ -1,0 +1,52 @@
+<div>
+    <app-header></app-header>
+    Criar Evento - Foco atual em fazer funcionar, estilização depois.
+
+    <form [formGroup]="form" (ngSubmit)="criarEvento()">
+
+        <label for="nome">Digite o nome do evento:</label><br />
+        <input type="text" id="nome" formControlName="nome" /><br />
+        <div *ngIf="form.get('nome').hasError('required') && form.get('nome').touched">
+            <span class="error-message">O campo nome precisa ser preenchido.</span>
+        </div>
+
+        <label for="descricao">Digite uma descrição para o evento:</label><br />
+        <input type="text" id="descricao" formControlName="descricao" /><br />
+        <div *ngIf="form.get('descricao').hasError('required') && form.get('descricao').touched">
+            <span class="error-message">O campo precisa ser preenchido.</span>
+        </div>
+
+        <label for="localizacao">Digite onde o evento será realizado:</label><br />
+        <input type="text" id="localizacao" formControlName="localizacao" /><br />
+        <div *ngIf="form.get('localizacao').hasError('required') && form.get('localizacao').touched">
+            <span class="error-message">O campo precisa ser preenchido.</span>
+        </div>
+
+        <label for="valor">Digite o valor do evento:</label><br />
+        <input type="text" id="valor" formControlName="valor" /><br />
+        <div *ngIf="form.get('valor').hasError('required') && form.get('valor').touched">
+            <span class="error-message">O campo precisa ser preenchido.</span>
+        </div>
+
+        <label for="data">Digite a data em que ocorrerá o evento:</label><br />
+        <input type="text" id="data" formControlName="data" /><br />
+        <div *ngIf="form.get('data').hasError('required') && form.get('data').touched">
+            <span class="error-message">O campo precisa ser preenchido.</span>
+        </div>
+
+        <label for="arquivo">Adicione uma imagem para o evento:</label><br />
+        <input type="file" id="arquivo" formControlName="arquivo" (change)="onFileChange($event)" />
+        <div *ngIf="form.get('arquivo').hasError('required') && form.get('arquivo').touched">
+            <span class="error-message">O campo precisa ser preenchido.</span>
+        </div>
+
+        <!-- Exibir a imagem se houver -->
+        <div *ngIf="imageUrl">
+            <h4>Preview da Imagem:</h4>
+            <img [src]="imageUrl" alt="Imagem do Evento" style="max-width: 300px; max-height: 300px;" />
+        </div>
+
+        <button type="submit" [disabled]="form.invalid">Criar Evento</button>
+    
+    </form>
+</div>

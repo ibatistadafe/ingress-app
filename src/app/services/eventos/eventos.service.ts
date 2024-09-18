@@ -8,11 +8,15 @@ import { Eventos } from '../../model/eventos/eventos.model';
 })
 export class EventosService {
 
-  private apiUrl = 'http://localhost:3000/eventos/list-eventos';
+  private apiUrl = 'http://localhost:3000/eventos';
 
   constructor(private http: HttpClient) { }
 
   public listaEventos(): Observable<Array<Eventos>> {
     return this.http.get<Array<Eventos>>(this.apiUrl);
   }
+
+  public criarEvento(evento: Eventos): Observable<Eventos> {
+    return this.http.post<Eventos>(this.apiUrl, evento);
+}
 }

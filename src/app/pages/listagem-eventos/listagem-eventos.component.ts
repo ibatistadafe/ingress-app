@@ -32,6 +32,8 @@ export class ListagemEventosComponent implements OnInit{
     this._eventosService.listaEventos().subscribe({
       next: (value) => {
         this.listEvents = value;
+        console.log(this.listEvents);
+        console.log(this.listEvents[0].arquivo)
       },
       error: (error) => {
         console.log('Erro ao listar eventos');
@@ -40,6 +42,10 @@ export class ListagemEventosComponent implements OnInit{
   }
 
   public redirecionaEvento(id: string) {
-    this.router.navigate([`/evento/${id}`])
+    this.router.navigate([`/evento/${id}`]);
+  }
+
+  public redirecionaCriarEvento() {
+    this.router.navigate(['/criar-evento']);
   }
 }
