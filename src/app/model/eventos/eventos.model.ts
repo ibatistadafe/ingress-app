@@ -1,3 +1,4 @@
+// eventos.model.ts
 export class Eventos {
     public id?: string;
     public nome: string;
@@ -5,6 +6,11 @@ export class Eventos {
     public localizacao: string;
     public valor: number;
     public data: string;
-    public arquivo: string | null;
+    public arquivo: BufferData | string | null; // Aceita Buffer ou string
 }
 
+export interface BufferData {
+    type: string;
+    data: number[];
+  }
+  

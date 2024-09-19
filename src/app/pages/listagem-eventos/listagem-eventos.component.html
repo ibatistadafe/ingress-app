@@ -1,5 +1,14 @@
+<!-- listagem-eventos.component.html -->
+<ngx-spinner
+    [fullscreen]="true"
+  bdColor="rgba(0,0,0,0.9)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple"
+>
+  <p style="font-size: 20px; color: white">Buscando Eventos...</p>
+</ngx-spinner>
 <app-header></app-header>
-
 <div class="content">
     <div class="box-title pt-4">
         <div class="hamburger-menu">
@@ -12,12 +21,14 @@
 
     <div class="list-events d-flex flex-column">
         <div class="event d-flex align-items-center justify-content-center" 
-        *ngFor="let event of listEvents" 
-        (click)="redirecionaEvento(event.id)">
+             *ngFor="let event of listEvents" 
+             (click)="redirecionaEvento(event.id)">
             <div class="image-description d-flex align-items-center mx-1">
-                <img *ngIf="event.arquivo" 
-                     [src]="'data:image/jpeg;base64,' + event.arquivo" 
-                     [alt]="event.descricao">
+                <img 
+                    *ngIf="event.arquivo"
+                    [src]="'data:image/jpeg;base64,' + event.arquivo" 
+                    [alt]="event.descricao"
+                    class="event-image"> <!-- Classe opcional para estilos -->
                 <h4>{{event.nome + ' | ' + event.descricao}}</h4>
             </div>
             <div class="status mx-4">
