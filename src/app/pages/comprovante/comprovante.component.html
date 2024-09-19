@@ -1,0 +1,33 @@
+<div class="contain">
+  <app-header></app-header>
+  <app-banner></app-banner>
+
+  <div class="box-infos">
+    <h1 class="title">pedido confirmado</h1>
+    <div class="box-message">
+      <p>
+        Seu ingresso foi confirmado. <br />
+        Chegará todos os detalhes do ingresso em seu SMS/E-mail.
+      </p>
+    </div>
+    <div class="box-info-ticket">
+      <p>Informações do ingresso:</p>
+      <p>
+        ID: <span>{{ id }}</span>
+        <br />
+        Valor: R$<span>{{ value }}</span>
+        <br />
+        Forma de Pagamento: <span>{{ pagamentForm }}</span>
+      </p>
+
+      <p>Nome nos ingressos: <span>{{ names }}</span></p>
+
+      <li>
+        Apresentar os ingressos na entrada, no dia correspondente ao DAY CAMP.
+      </li>
+    </div>
+    <a (click)="navigateToEventPage()">
+      <img src="../../../assets/image/iconHome.png" alt="Icone Home" />
+    </a>
+  </div>
+</div>
