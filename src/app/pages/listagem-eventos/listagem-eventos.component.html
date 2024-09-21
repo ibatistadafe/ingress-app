@@ -20,21 +20,22 @@
     </div>
 
     <div class="list-events d-flex flex-column">
-        <div class="event d-flex align-items-center justify-content-center" 
+        <div class="event flex-column align-items-center justify-content-center" 
              *ngFor="let event of listEvents" 
-             (click)="redirecionaEvento(event.id)">
-            <div class="image-description d-flex align-items-center mx-1">
+             >
+            <div class="image-description d-flex align-items-center">
                 <img 
                     *ngIf="event.arquivo"
                     [src]="'data:image/jpeg;base64,' + event.arquivo" 
                     [alt]="event.descricao"
-                    class="event-image"> <!-- Classe opcional para estilos -->
-                <h4>{{event.nome + ' | ' + event.descricao}}</h4>
-            </div>
-            <div class="status mx-4">
-                <h4>{{event.data}}</h4>
+                    (click)="redirecionaEvento(event.id)"
+                    class="event-image"> 
+                </div>
+                <div class="event-info">
+                    <h3>{{event.nome}}</h3>
+                    <button (click)="redirecionaEvento(event.id)">Saiba mais</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<button (click)="redirecionaCriarEvento()">Criar Evento</button>
+    <button (click)="redirecionaCriarEvento()">Criar Evento</button>

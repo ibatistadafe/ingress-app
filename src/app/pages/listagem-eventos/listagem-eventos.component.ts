@@ -63,7 +63,7 @@ export class ListagemEventosComponent implements OnInit {
 
   public redirecionaEvento(id: string) {
     this.router.navigate([`/evento/${id}`]);
-  }
+  }  
 
   public redirecionaCriarEvento() {
     this.router.navigate(['/criar-evento']);

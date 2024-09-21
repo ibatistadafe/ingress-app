@@ -18,7 +18,7 @@ export const routes: Routes = [
   { path: '', component: homeComponent },
   { path: 'adiciona-mais-ingresso', component: AdicionaMaisIngressoComponent },
   { path: 'lista-eventos', component: ListagemEventosComponent, canActivate: [AuthGuard] },
-  { path: 'evento:id', component: ListagemEventosComponent, canActivate: [AuthGuard] },
+  { path: 'evento/:id', component: EventoComponent, canActivate: [AuthGuard] },
   { path: 'form-dados-pessoais', component: DadosPessoaisComponent },
   { path: 'form-endereco', component: EnderecoComponent },
   { path: 'form-senha', component: CriaSenhaComponent},
