@@ -19,11 +19,22 @@
 
 
 .descricao-evento {
-    margin-top: 2rem;
+    margin-top: 1.4rem;
     display: flex;
     justify-content: center;
     text-align: center;
     text-decoration: solid;
+    flex-direction: column;
+
+    h1 {
+        font-weight: bold;
+    }
+
+    .linha {
+        margin-top: -1px;
+        color: white;
+        background-color: white;
+    }
 }
 
 .adquira {
@@ -31,7 +42,7 @@
     justify-content: center;
     text-align: center;
     align-items: center;
-    margin-top: 2rem;
+    margin-top: 1rem;
     text-decoration: underline;
 }
 
@@ -56,6 +67,10 @@
     span {
         font-weight: 600;
     }
+
+    p {
+        font-style: italic;
+    }
 }
 
 .localizacao {
@@ -63,8 +78,26 @@
     flex-direction: column;
     justify-content: center;
     text-align: center;
+    margin-top: 2rem;
 
     span {
         font-weight: 600;
+    }
+}
+
+.descricao-do-evento {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin-top: 1rem;
+    max-width: 96vw;
+
+    span {
+        font-weight: 600;
+    }
+
+    p {
+        font-weight: 500;
     }
 }
