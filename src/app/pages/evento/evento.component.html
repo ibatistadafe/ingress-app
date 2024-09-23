@@ -4,35 +4,38 @@
   <img *ngIf="evento.arquivo" [src]="'data:image/jpeg;base64,' + evento.arquivo" [alt]="evento.descricao"
     class="evento-image">
 
-    <div class="adquira">
-      <h3>ADQUIRA SEU INGRESSO</h3>
-    </div>
-    
+  <div class="descricao-evento">
+    <h1>{{ evento.nome }}</h1>
+    <hr class="linha">
+  </div>
+  <div class="adquira">
+    <h3>ADQUIRA SEU INGRESSO</h3>
+  </div>
 
   <div class="info-evento">
     <div class="valor">
       <span>Valor</span>
-      <h3 *ngIf="eventoIsGratuito(evento.valor)">Evento Gratuito!</h3>
-      <h3 *ngIf="!eventoIsGratuito(evento.valor)">{{ evento.valor | currency: 'BRL' }}</h3>
+      <div *ngIf="eventoIsGratuito(evento.valor)">
+        <h1>Evento Gratuito!</h1>
+      </div>
+      <div *ngIf="!eventoIsGratuito(evento.valor)">
+        <h1>{{ evento.valor | currency: 'BRL' }}</h1>
+        <p>Quantidade de Ingressos: {{ quantidadeIngressos }}</p>
+        <p>Total: {{ (evento.valor * quantidadeIngressos) | currency: 'BRL' }}</p>
+        <app-botao-verde [descricao]="descricaoBotao" (newItemEvent)="adicionarIngresso()"></app-botao-verde>
+      </div>
     </div>
+    <hr class="linha">
 
-    <div class="descricao-evento">
-      <h1>{{ evento.nome }}</h1>
-    </div>
-    <div class="data-evento">
-      <h4>{{ evento.data }}</h4>
+    <div class="descricao-do-evento">
+      <span>O Que é?</span>
+      <p>{{evento.descricao}}</p>
     </div>
 
     <div class="localizacao">
       <span>Onde?</span>
       <h3>{{evento.localizacao}}</h3>
     </div>
-
-    <!-- <span>ingresso</span> -->
-
-
-
-    <!-- <app-botao-verde [descricao]="descricaoBotao" (newItemEvent)="teste()"></app-botao-verde> -->
   </div>
 </div>
 
