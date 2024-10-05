@@ -3,12 +3,14 @@
 <div class="conatainer">
 
   <!-- quando apertar o enter exibir lista -->
+  <!-- caixa de busca -->
   <div class="buscar">
     <img src="../../../assets/image/busca.png" alt="icone para sugerir pesquisas">
-    <input type="text" id="inputBusca">
+    <!-- usando o onkeypress -->
+    <input type="text" id="inputBusca" placeholder="Busque a reserva">
   </div>
   <!-- condição para aparecer -->
-  <ol>
+  <ol hidden>
     <li>
       <app-reserva></app-reserva>
     </li>
