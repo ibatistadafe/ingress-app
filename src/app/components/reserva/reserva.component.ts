@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { ReservaType } from './../../../reseva';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-reserva',
@@ -8,5 +9,5 @@ import { Component } from '@angular/core';
   styleUrl: './reserva.component.scss'
 })
 export class ReservaComponent {
-
+  @Input() reserva!: ReservaType;
 }

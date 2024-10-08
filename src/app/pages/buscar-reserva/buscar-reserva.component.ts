@@ -1,32 +1,36 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { HeaderComponent } from '../../components/header/header.component';
 import { ReservaComponent } from "../../components/reserva/reserva.component";
+import { ReservaType } from '../../../reseva';
+import { ResevaService } from '../../services/reserva/reseva.service';
+import { CommonModule } from '@angular/common';  // Importar CommonModule
 
 @Component({
   selector: 'app-buscar-reserva',
   standalone: true,
-  imports: [HeaderComponent, ReservaComponent],
+  imports: [HeaderComponent, ReservaComponent, CommonModule],
   templateUrl: './buscar-reserva.component.html',
   styleUrl: './buscar-reserva.component.scss'
 })
 
 export class BuscarReservaComponent {
 
-  //filteredLocationList: HousingLocation[] = [];
+  reservaList: ReservaType[] = [];
+  resevaService: ResevaService = inject(ResevaService);
+  filteredReserva: ReservaType[] = [];
+  constructor() {
+    this.reservaList = this.resevaService.getAllReservas();
+    //this.filteredReserva = this.reservaList;
+  }
+  filterResults(text: string) {
+    if (!text) {
+      this.filteredReserva = this.reservaList;
+      return;
+    }
 
-  //metodo para executar um get em angular
-  // executarBusca(event: KeyboardEvent): void{
-  //   const teclaPressionada = event.key;
-  //   console.log(teclaPressionada);
-
-  //   if(teclaPressionada == "Enter"){
-  //     console.log("#5B7GG5FG");
-  //   }
-  // }
-
-  // constructor() {
-  //   this.housingLocationList = this.housingService.getAllHousingLocations();
-  //   this.filteredLocationList = this.housingLocationList;
-  // }
+    this.filteredReserva = this.reservaList.filter(
+      reserva => reserva?.id.toLowerCase().includes(text.toLowerCase())
+    );
+  }
 
 }

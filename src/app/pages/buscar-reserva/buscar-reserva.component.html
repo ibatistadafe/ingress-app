@@ -1,27 +1,32 @@
 <app-header></app-header>
 
 <div class="conatainer">
-
   <!-- quando apertar o enter exibir lista -->
   <!-- caixa de busca -->
-  <div class="buscar">
-    <img src="../../../assets/image/busca.png" alt="icone para sugerir pesquisas">
+  <section class="buscar">
     <!-- usando o onkeypress -->
-    <input type="text" id="inputBusca" placeholder="Busque a reserva">
-  </div>
+
+    <form>
+      <input
+        type="text"
+        id="inputBusca"
+        placeholder="Busque a reserva"
+        #filterInput
+      />
+      <button
+        class="primary"
+        type="button"
+        (click)="filterResults(filterInput.value)"
+      >
+        Buscar
+      </button>
+    </form>
+  </section>
   <!-- condição para aparecer -->
-  <ol hidden>
-    <li>
-      <app-reserva></app-reserva>
-    </li>
-    <li>
-      <app-reserva></app-reserva>
-    </li>
-    <li>
-      <app-reserva></app-reserva>
-    </li>
-    <li>
-      <app-reserva></app-reserva>
-    </li>
-  </ol>
+  <section class="results">
+    <app-reserva
+      *ngFor="let reserva of filteredReserva"
+      [reserva]="reserva">
+    </app-reserva>
+  </section>
 </div>
