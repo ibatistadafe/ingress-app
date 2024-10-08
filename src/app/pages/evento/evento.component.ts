@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { EventosService } from '../../services/eventos/eventos.service';
-import { Eventos } from '../../model/eventos/eventos.model';
+import { Eventos, Ingresso } from '../../model/eventos/eventos.model';
 import { HeaderComponent } from "../../components/header/header.component";
 import { BotaoVerdeComponent } from '../../components/botao-verde/botao-verde.component';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -16,13 +16,16 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } 
 })
 export class EventoComponent implements OnInit {
   public evento: Eventos;
-  public quantidadeIngressos: number = 1; // Inicializa com 1 ingresso
+  public quantidadeIngressos: number;
   public descricaoBotao = "Adicionar";
   public form: FormGroup;
 
   // Variáveis para o acordeão
-  public isAccordionOpen: { [key: string]: boolean } = {};
+  public isAccordionOpen: boolean = false;
+  public isAccordionOpenCheckout: { [key: string]: boolean } = {};
   public ingressos: any[] = []; // Array para armazenar ingressos
+  public ingressosCheckout: any[] = [];
+  public totalIngressos: number;
 
   constructor(
     private route: ActivatedRoute,
@@ -37,7 +40,6 @@ export class EventoComponent implements OnInit {
         this.buscarEventoPorId(eventoId);
       }
     });
-    this.adicionarIngresso(); // Inicializa com um ingresso
     this.form = this.fb.group({
       nome: new FormControl('', [Validators.required]),
       cpf: new FormControl('', [Validators.required]),
@@ -77,26 +79,40 @@ export class EventoComponent implements OnInit {
   }
 
   adicionarIngressos() {
-    this.quantidadeIngressos++;
-    this.adicionarIngresso(); // Adiciona um ingresso
+    if(this.quantidadeIngressos == 0) {
+      this.quantidadeIngressos = 1;
+    } else {
+      this.quantidadeIngressos++;
+    }
+    this.totalIngressos = this.evento.valor * this.quantidadeIngressos;
   }
 
-  adicionarIngresso() {
-    this.ingressos.push({});
-    this.isAccordionOpen[`item${this.ingressos.length - 1}`] = false; // Abre o último item do acordeão
+  toggleAccordion() {
+    this.isAccordionOpen = !this.isAccordionOpen;
   }
 
-  toggleAccordion(item: string) {
-    this.isAccordionOpen[item] = !this.isAccordionOpen[item];
+  toggleAccordionCheckout(item: string) {
+    this.isAccordionOpenCheckout[item] = !this.isAccordionOpenCheckout[item];
   }
 
   calcularValorTotal(): number {
     return this.eventoIsGratuito(this.evento.valor) ? 0 : this.evento.valor * this.quantidadeIngressos;
   }
 
-  emitCheckout() {
+  emitChart() {
     this.ingressos.push(this.form.value);
+    this.ingressos.forEach((ingresso: Ingresso) => {
+      if(ingresso.nome != null) {
+        this.ingressosCheckout.push(ingresso);
+      }
+    });
     console.log(this.ingressos);
+    console.log(this.ingressosCheckout);
     this.form.reset();
+    this.verificaIgualdade(this.ingressosCheckout);
   }
+
+  verificaIgualdade(array) {
+    this.ingressosCheckout = array.filter((item, index) => array.indexOf(item) === index);
+  } 
 }

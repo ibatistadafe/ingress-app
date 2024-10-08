@@ -15,18 +15,17 @@
       </div>
       <div *ngIf="!eventoIsGratuito(evento.valor)">
         <h1>{{ evento.valor | currency: 'BRL' }}</h1>
-        <p>{{ quantidadeIngressos }} Ingressos</p>
-        <p>Adicionar mais ingressos</p>
-        <app-botao-verde [descricao]="descricaoBotao" (newItemEvent)="adicionarIngressos()"></app-botao-verde>
+        <p>1 Ingressos</p>
 
         <div class="accordion">
-          <div class="accordion-item" *ngFor="let ingresso of ingressos; let i = index">
-            <h5 (click)="toggleAccordion('item' + i)" class="accordion-header">
-              Ingresso {{ i + 1 }} <img style="width: 20px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAvklEQVR4nO3RwQqDMBCE4aGHYt92j75XD7ZPZxEUSsCmarKZ1flhbznMRwCllFJKKeXZDSfYeAfwBNCDNwPwAvDIIcb5elLEON97DZNC2DCWbJsg3dpjVoxtQbBibA+CDWNHECwYK4FojbGSiFYYq4HwxlhNhBfGBVEb44qohWmCKI1piiiFoUAcxVAh9mIoEVsx1Ih/MSEQOUwoxNI0cEiGf98QAfHrZ8L8RA4TEpFiQiOWujMglFJKKaWu3AfcdLEudXvTswAAAABJRU5ErkJggg==">
+          <div class="accordion-item">
+            <h5 (click)="toggleAccordion()" class="accordion-header">
+              Ingresso<img style="width: 20px;"
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAvklEQVR4nO3RwQqDMBCE4aGHYt92j75XD7ZPZxEUSsCmarKZ1flhbznMRwCllFJKKeXZDSfYeAfwBNCDNwPwAvDIIcb5elLEON97DZNC2DCWbJsg3dpjVoxtQbBibA+CDWNHECwYK4FojbGSiFYYq4HwxlhNhBfGBVEb44qohWmCKI1piiiFoUAcxVAh9mIoEVsx1Ih/MSEQOUwoxNI0cEiGf98QAfHrZ8L8RA4TEpFiQiOWujMglFJKKaWu3AfcdLEudXvTswAAAABJRU5ErkJggg==">
             </h5>
-            <div *ngIf="isAccordionOpen['item' + i]" class="accordion-content">
+            <div *ngIf="isAccordionOpen" class="accordion-content">
               <p>Insira os dados</p>
-              <form [formGroup]="form" (ngSubmit)="emitCheckout()">
+              <form [formGroup]="form" (ngSubmit)="emitChart(); adicionarIngressos()">
 
                 <label for="nome">Digite seu nome:</label><br />
                 <input type="text" id="nome" formControlName="nome" /><br />
@@ -77,12 +76,36 @@
                   <input type="radio" formControlName="tipo" id="tipo" name="tipo" value="Outro">
                   <label for="tipo">Outro</label>
                 </div>
-                <button type="submit" [disabled]="form.invalid" [ngClass]="{'disabled': !form.valid}">Ok</button>
+                <button type="submit" [disabled]="form.invalid" [ngClass]="{'disabled': !form.valid}">Adicionar
+                  Ingresso</button>
               </form>
             </div>
           </div>
+        </div>
+        <div id="checkoutDiv">
+          <div class="accordion">
+            <div class="accordion-item" *ngFor="let ingresso of ingressosCheckout; let i = index">
+              <h5 (click)="toggleAccordionCheckout('item' + i)" class="accordion-header">
+                Ingresso {{ i + 1 }} <img style="width: 20px;"
+                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAvklEQVR4nO3RwQqDMBCE4aGHYt92j75XD7ZPZxEUSsCmarKZ1flhbznMRwCllFJKKeXZDSfYeAfwBNCDNwPwAvDIIcb5elLEON97DZNC2DCWbJsg3dpjVoxtQbBibA+CDWNHECwYK4FojbGSiFYYq4HwxlhNhBfGBVEb44qohWmCKI1piiiFoUAcxVAh9mIoEVsx1Ih/MSEQOUwoxNI0cEiGf98QAfHrZ8L8RA4TEpFiQiOWujMglFJKKaWu3AfcdLEudXvTswAAAABJRU5ErkJggg==">
+              </h5>
+              <div *ngIf="isAccordionOpenCheckout['item' + i]" class="accordion-content">
+                <div id="ticketImage">
+                  <label>Nome: {{ingresso.nome}}</label><br />
+                  <label>CPF: {{ingresso.cpf}}</label><br />
+                  <label>Email: {{ingresso.email}}</label><br />
+                  <label>Telefone: {{ingresso.telefone}}</label><br />
+                  <div>
+                    <label>Tipo: {{ingresso.tipo}}</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <div id="checkoutValue">
-            <h5>Total: {{ calcularValorTotal() | currency: 'BRL' }}</h5>
+            <span>Total: {{ totalIngressos | currency: 'BRL' }}</span>
+            <p>{{ quantidadeIngressos }} Ingressos</p>
+            <button>Checkout</button>
           </div>
         </div>
       </div>

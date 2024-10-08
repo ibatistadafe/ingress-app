@@ -13,4 +13,13 @@ export interface BufferData {
     type: string;
     data: number[];
   }
+
+export class Ingresso {
+    public id?: string;
+    public nome: string;
+    public cpf: string;
+    public email: string;
+    public telefone: string;
+    public tipo: string;
+}
   

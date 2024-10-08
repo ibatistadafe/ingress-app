@@ -137,7 +137,16 @@
   }
 
 #checkoutValue {
-    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    
+    
+    button {
+        margin-top: 1rem;
+        width: 30%;
+    }
 }
 
 #radios {
@@ -146,4 +155,16 @@
     flex-direction: row;
     gap: 5px;
     justify-content: center;
+}
+
+#checkoutDiv {
+    background-color: white;
+}
+
+#ticketImage {
+    background-image: url("../../../assets/image/vecteezy_sticker-ticket-bullet-journal-line-art_15440111.png");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+    width: 100vw;
 }
