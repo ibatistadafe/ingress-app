@@ -28,5 +28,4 @@ export const routes: Routes = [
   { path: 'comprovante', component: ComprovanteComponent },
   { path: 'criar-evento', component: CriarEventoComponent},
   { path: 'pagamento', component: PagamentoComponent},
-
 ];

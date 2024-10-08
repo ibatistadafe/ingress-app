@@ -5,6 +5,7 @@
   background-position: center; 
   background-repeat: no-repeat;
   max-height: 90vh; 
+  min-height: 90vh;
   overflow-y: auto; 
   margin: 0; 
   font-size: 10px;
@@ -67,7 +68,7 @@
 
 .list-events {
   margin-top: 1.5rem;
-  gap: 17rem;
+  gap: 19rem;
 }
 
 .event-info {
