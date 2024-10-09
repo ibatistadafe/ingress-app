@@ -13,6 +13,7 @@ import { AuthGuard } from './services/guard/auth-guard.service';
 import { EventoComponent } from './pages/evento/evento.component';
 import { CriarEventoComponent } from './pages/criar-evento/criar-evento.component';
 import { PagamentoComponent } from './pages/pagamento/pagamento.component';
+import { CheckoutComponent } from './pages/checkout/checkout.component';
 
 
 export const routes: Routes = [
@@ -28,4 +29,5 @@ export const routes: Routes = [
   { path: 'comprovante', component: ComprovanteComponent },
   { path: 'criar-evento', component: CriarEventoComponent},
   { path: 'pagamento', component: PagamentoComponent},
+  { path: 'checkout', component: CheckoutComponent }
 ];

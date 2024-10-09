@@ -144,10 +144,10 @@
     
     
     button {
-        margin-top: 1rem;
-        width: 30%;
+            margin-top: -0.5rem;
+            margin-bottom: 1rem;
+        }
     }
-}
 
 #radios {
     margin-top: 1rem;
@@ -167,4 +167,39 @@
 	background-repeat: no-repeat;
 	background-position: center;
     width: 100vw;
+}
+
+#checkoutButton {
+    padding: 5px;
+    width: 13rem;
+    height: 2.7rem;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    background-color: rgb(85, 190, 85);
+}
+
+#addIngressButton {
+    padding: 5px;
+    width: 13rem;
+    height: 2.7rem;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    background-color: rgb(85, 190, 85);
+    margin: 1rem;
+}
+
+#addIngressButton:disabled {
+    padding: 5px;
+    width: 13rem;
+    height: 2.7rem;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    background-color: rgb(231, 231, 231);
+    margin: 1rem;
 }

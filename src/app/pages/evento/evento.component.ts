@@ -1,36 +1,43 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EventosService } from '../../services/eventos/eventos.service';
-import { Eventos, Ingresso } from '../../model/eventos/eventos.model';
+import { Eventos, Ingresso, Ticket, TicketsPackage } from '../../model/eventos/eventos.model';
 import { HeaderComponent } from "../../components/header/header.component";
 import { BotaoVerdeComponent } from '../../components/botao-verde/botao-verde.component';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+import { cpfValidator } from '../../validators/cpf.validator';
+import { RandomIdService } from '../../services/eventos/random-id.service';
 
 @Component({
   selector: 'app-evento',
   standalone: true,
   templateUrl: './evento.component.html',
   styleUrls: ['./evento.component.scss'],
-  imports: [CommonModule, HeaderComponent, BotaoVerdeComponent, ReactiveFormsModule]
+  imports: [CommonModule, HeaderComponent, BotaoVerdeComponent, ReactiveFormsModule, NgxMaskDirective, NgxMaskPipe],
+  providers: [provideNgxMask()]
 })
 export class EventoComponent implements OnInit {
   public evento: Eventos;
-  public quantidadeIngressos: number;
+  public quantidadeIngressos: number = 0;
   public descricaoBotao = "Adicionar";
   public form: FormGroup;
+  public tickets: TicketsPackage = new TicketsPackage(); //Tickets que serao emitidos para a tela de checkout com id
 
-  // Variáveis para o acordeão
   public isAccordionOpen: boolean = false;
   public isAccordionOpenCheckout: { [key: string]: boolean } = {};
   public ingressos: any[] = []; // Array para armazenar ingressos
-  public ingressosCheckout: any[] = [];
+  public ingressosCheckout: any = [];
   public totalIngressos: number;
+  public valorIngresso: number;
 
   constructor(
     private route: ActivatedRoute,
     private eventosService: EventosService,
     private fb: FormBuilder,
+    private randomIdService: RandomIdService,
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -42,7 +49,7 @@ export class EventoComponent implements OnInit {
     });
     this.form = this.fb.group({
       nome: new FormControl('', [Validators.required]),
-      cpf: new FormControl('', [Validators.required]),
+      cpf: new FormControl('', [Validators.required, cpfValidator()]),
       email: new FormControl('', [Validators.email]),
       telefone: new FormControl('', [Validators.required]),
       tipo: new FormControl('', [Validators.required]),
@@ -78,15 +85,6 @@ export class EventoComponent implements OnInit {
     return valorEvento <= 0;
   }
 
-  adicionarIngressos() {
-    if(this.quantidadeIngressos == 0) {
-      this.quantidadeIngressos = 1;
-    } else {
-      this.quantidadeIngressos++;
-    }
-    this.totalIngressos = this.evento.valor * this.quantidadeIngressos;
-  }
-
   toggleAccordion() {
     this.isAccordionOpen = !this.isAccordionOpen;
   }
@@ -100,19 +98,38 @@ export class EventoComponent implements OnInit {
   }
 
   emitChart() {
+    if(this.quantidadeIngressos == 0) {
+      this.quantidadeIngressos = 1;
+    } else {
+      this.quantidadeIngressos++;
+    }
+    this.totalIngressos = this.calcularValorTotal();
     this.ingressos.push(this.form.value);
-    this.ingressos.forEach((ingresso: Ingresso) => {
+    this.ingressos.forEach((ingresso: Ingresso) => { //logica pra retirar ingressos repetidos (bug)
       if(ingresso.nome != null) {
         this.ingressosCheckout.push(ingresso);
       }
     });
-    console.log(this.ingressos);
-    console.log(this.ingressosCheckout);
-    this.form.reset();
     this.verificaIgualdade(this.ingressosCheckout);
+    this.form.reset();
   }
 
   verificaIgualdade(array) {
     this.ingressosCheckout = array.filter((item, index) => array.indexOf(item) === index);
   } 
+
+  public goCheckout() {
+    this.tickets.id = this.randomIdService.generateUniqueId();
+    this.tickets.total = this.calcularValorTotal();
+    this.tickets.tickets = [...this.ingressosCheckout];
+    this.tickets.pago = false;
+  
+    console.log(this.tickets);
+    
+    // Passe o objeto como JSON diretamente
+    const ingressosString = JSON.stringify(this.tickets);
+  
+    this.router.navigate(['/checkout'], { queryParams: { data: ingressosString } });
+  }
+  
 }

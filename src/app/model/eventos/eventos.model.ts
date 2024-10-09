@@ -21,5 +21,23 @@ export class Ingresso {
     public email: string;
     public telefone: string;
     public tipo: string;
+    public valor: number;
+}
+
+export class Ticket {
+    public id?: string;
+    public nome: string;
+    public cpf: string;
+    public email: string;
+    public telefone: string;
+    public tipo: string;
+    public valor: number;
+}
+
+export class TicketsPackage {
+    public id?: string;
+    public tickets: Array<Ticket>;
+    public total: number;
+    public pago?: boolean;
 }
   
