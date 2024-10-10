@@ -1,205 +1,310 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap");
+
+* {
+  font-family: "Roboto Serif", serif;
+  color: black;
+}
+
 .content {
-    display: flex;
-    flex-direction: column;
-    color: rgb(0, 0, 0);
-    background-color: rgb(241, 241, 241);
-    height: 89.1vh;
-    overflow-y: auto; 
+  display: flex;
+  flex-direction: column;
+  color: rgb(0, 0, 0);
+  background-color: white;
+  height: 89.1vh;
+  overflow-y: auto;
 }
 
+.info-evento {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  // align-items: center;
+  padding: 0 20px;
+  text-align: center;
+}
 .evento-image {
-  width: 100vw; 
-  height: 24vh; 
+  width: 100vw;
+  height: 24vh;
 
-  object-fit: cover; 
-  max-width: 100%; 
-  max-height: 100%; 
-  display: block; 
+  object-fit: cover;
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
 }
-
 
 .descricao-evento {
-    margin-top: 1.4rem;
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    text-decoration: solid;
-    flex-direction: column;
+  margin-top: 1.4rem;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  text-decoration: solid;
+  flex-direction: column;
 
-    h1 {
-        font-weight: bold;
-    }
+  h1 {
+    font-weight: bold;
+  }
 
-    .linha {
-        margin-top: -1px;
-        color: white;
-        border-color: white;
-    }
+  .linha {
+    margin-top: -1px;
+    color: white;
+    border-color: white;
+  }
 }
 
 .linhaIngresso {
-    margin-top: -0.2rem;
-    border-color: rgb(158, 158, 158);
-    margin-left: 10%;
-    margin-right: 10%;
+  margin-top: -0.2rem;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 .adquira {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    align-items: center;
-    margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+.adquira h3 {
+  font-size: 1.7rem;
+  font-weight: 600;
 }
 
 .data-evento {
-    display: flex;
-    justify-content: center;
-    text-align: center;
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
 
 .data-evento h4 {
-    border: solid rgb(87, 87, 87) 1px;
-    border-radius: 5px;
-    padding: 10px;
+  border-radius: 5px;
+  padding: 10px;
 }
 
 .valor {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  // align-items: center;
+  text-align: center;
 
+  .valor-texto {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    // width: 80%;
     span {
-        font-weight: 600;
+      font-weight: 500;
+      font-size: 1.3rem;
+      width: 50%;
+      text-align: left;
+      padding: 1px 0;
     }
 
     p {
-        font-style: italic;
+      font-style: italic;
     }
+    h1 {
+      font-size: 1.3rem;
+      width: 50%;
+      text-align: right;
+      padding: 1px 0;
+    }
+  }
 }
 
 .localizacao {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 1rem;
+  text-align: left;
 
-    span {
-        font-weight: 600;
-    }
+  span {
+    font-weight: 600;
+    font-size: 1.3rem;
+  }
+  p {
+    font-weight: 500;
+    font-size: 1rem;
+  }
 }
 
 .descricao-do-evento {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    margin-top: 1rem;
-    max-width: 96vw;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 1rem;
+  text-align: left;
 
-    span {
-        font-weight: 600;
-    }
-
-    p {
-        font-weight: 500;
-    }
+  span {
+    font-weight: 600;
+    font-size: 1.3rem;
+  }
+  p {
+    font-weight: 500;
+    font-size: 1rem;
+  }
 }
 
 .accordion {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin: 10px 0;
-  }
-  
-  .accordion-item {
-    border-bottom: 1px solid #ccc;
-  }
-  
-  .accordion-header {
-    background: #f7f7f7;
-    padding: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background 0.3s ease;
-  }
-  
-  .accordion-header:hover {
-    background: #e0e0e0;
-  }
-  
-  .accordion-content {
-    padding: 5px;
-    background: #fff;
-    display: block;
-  }
+  border-radius: 3px;
+  border: solid 0.2px #000;
+  margin: 10px 0;
+  padding: 10px;
+}
+
+.accordion-item {
+  border: none;
+}
+
+.accordion-header {
+  cursor: pointer;
+  //   font-weight: bold;
+  text-align: left;
+  transition: background 0.3s ease;
+  font-size: 1.5rem;
+}
+
+.accordion-header:hover {
+  background: #d4d4d491;
+}
+
+.accordion-content {
+  padding: 5px 0;
+  background: #fff;
+  display: block;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 3px;
+  border: solid 0.2px #000;
+  margin: 6px 0;
+}
+
+input::placeholder {
+  color: black;
+  font-weight: 500;
+}
 
 #checkoutValue {
-    display: flex;
-    flex-direction: column;
-    justify-content: center; 
-    align-items: center;
-    
-    
-    button {
-            margin-top: -0.5rem;
-            margin-bottom: 1rem;
-        }
-    }
+  display: flex;
+  flex-direction: column;
+//   justify-content: center;
+  align-items: center;
 
-#radios {
-    margin-top: 1rem;
+  span{
     display: flex;
     flex-direction: row;
-    gap: 5px;
-    justify-content: center;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 1.4rem;
+  }
+  span p{
+    font-weight: 600;
+  }
+
+  button {
+    margin-top: -0.5rem;
+    margin-bottom: 1rem;
+  }
+}
+
+#radios {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.left-size,
+.right-size {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+}
+
+.custom-radio input[type="radio"] {
+  display: none;
+}
+
+.custom-radio {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1rem;
+
+  label {
+    color: black;
+  }
+}
+
+.custom-radio .radio-box {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #000;
+  display: inline-block;
+  margin-right: 10px;
+  border-radius: 3px;
+  position: relative;
+}
+
+.custom-radio input[type="radio"]:checked + .radio-box::before {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-color: #000000;
+  position: relative;
+  border-radius: 3px;
+  border: none;
 }
 
 #checkoutDiv {
-    background-color: white;
+  background-color: white;
 }
 
 #ticketImage {
-    background-image: url("../../../assets/image/vecteezy_sticker-ticket-bullet-journal-line-art_15440111.png");
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: center;
-    width: 100vw;
+  background-image: url("../../../assets/image/fundo-ingresso.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100vw;
+  text-align: left;
 }
 
 #checkoutButton {
-    padding: 5px;
-    width: 13rem;
-    height: 2.7rem;
-    border: none;
-    border-radius: 5px;
+    cursor: pointer;
     color: white;
-    font-weight: bold;
-    background-color: rgb(85, 190, 85);
+    margin: 1rem;
+    width: 100%;
+    padding: 10px;
+    border-radius: 3px;
+    border: solid 0.2px #000;
+    margin: 6px 0;
+    margin: 17px 0;
+    background-color: rgb(0, 0, 0);
 }
 
 #addIngressButton {
-    padding: 5px;
-    width: 13rem;
-    height: 2.7rem;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    font-weight: bold;
-    background-color: rgb(85, 190, 85);
-    margin: 1rem;
+  cursor: pointer;
+  color: white;
+  margin: 1rem;
+  width: 100%;
+  padding: 10px;
+  border-radius: 3px;
+  border: solid 0.2px #000;
+  margin: 6px 0;
+  margin: 17px 0;
+  background-color: rgb(0, 0, 0);
 }
 
 #addIngressButton:disabled {
-    padding: 5px;
-    width: 13rem;
-    height: 2.7rem;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    font-weight: bold;
-    background-color: rgb(231, 231, 231);
-    margin: 1rem;
+  border: solid 0.2px #6969695b;
+  color: rgb(87, 87, 87);
+  box-shadow: none;
+  background-color: rgb(201, 201, 201);
 }

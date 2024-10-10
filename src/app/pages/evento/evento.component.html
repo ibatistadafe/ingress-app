@@ -1,68 +1,95 @@
 <div class="content" *ngIf="evento">
-  <img *ngIf="evento.arquivo" [src]="'data:image/jpeg;base64,' + evento.arquivo" [alt]="evento.descricao"
-    class="evento-image">
+  <img
+    *ngIf="evento.arquivo"
+    [src]="'data:image/jpeg;base64,' + evento.arquivo"
+    [alt]="evento.descricao"
+    class="evento-image"
+  />
 
   <div class="adquira">
     <h3>ADQUIRA SEU INGRESSO</h3>
   </div>
-  <hr class="linhaIngresso">
+  <!-- <hr class="linhaIngresso"> -->
 
   <div class="info-evento">
     <div class="valor">
-      <span>Valor</span>
-      <div *ngIf="eventoIsGratuito(evento.valor)">
-        <h1>Evento Gratuito!</h1>
-      </div>
       <div *ngIf="!eventoIsGratuito(evento.valor)">
-        <h1>{{ evento.valor | currency: 'BRL' }}</h1>
-        <p>1 Ingressos</p>
+        <div class="valor-texto">
+          <span>Valor Unitário:</span>
+          <div *ngIf="eventoIsGratuito(evento.valor)">
+            <h1>Evento Gratuito!</h1>
+          </div>
+          <h1>{{ evento.valor | currency : "BRL" }}</h1>
+        </div>
 
         <div class="accordion">
           <div class="accordion-item">
             <h5 (click)="toggleAccordion()" class="accordion-header">
-              Preencha os dados <img style="width: 20px;"
-                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAvklEQVR4nO3RwQqDMBCE4aGHYt92j75XD7ZPZxEUSsCmarKZ1flhbznMRwCllFJKKeXZDSfYeAfwBNCDNwPwAvDIIcb5elLEON97DZNC2DCWbJsg3dpjVoxtQbBibA+CDWNHECwYK4FojbGSiFYYq4HwxlhNhBfGBVEb44qohWmCKI1piiiFoUAcxVAh9mIoEVsx1Ih/MSEQOUwoxNI0cEiGf98QAfHrZ8L8RA4TEpFiQiOWujMglFJKKaWu3AfcdLEudXvTswAAAABJRU5ErkJggg==">
+              Preencha os dados
+              <img
+                style="width: 20px"
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAvklEQVR4nO3RwQqDMBCE4aGHYt92j75XD7ZPZxEUSsCmarKZ1flhbznMRwCllFJKKeXZDSfYeAfwBNCDNwPwAvDIIcb5elLEON97DZNC2DCWbJsg3dpjVoxtQbBibA+CDWNHECwYK4FojbGSiFYYq4HwxlhNhBfGBVEb44qohWmCKI1piiiFoUAcxVAh9mIoEVsx1Ih/MSEQOUwoxNI0cEiGf98QAfHrZ8L8RA4TEpFiQiOWujMglFJKKaWu3AfcdLEudXvTswAAAABJRU5ErkJggg=="
+              />
             </h5>
             <div *ngIf="isAccordionOpen" class="accordion-content">
               <form [formGroup]="form" (ngSubmit)="emitChart()">
-
-                <label for="nome">Digite seu nome:</label><br />
-                <input type="text" id="nome" formControlName="nome" /><br />
-                @if(form.get('nome').hasError('required') && form.get('nome').touched) {
+                <input
+                  type="text"
+                  id="nome"
+                  formControlName="nome"
+                  placeholder="Nome:"
+                /><br />
+                @if(form.get('nome').hasError('required') &&
+                form.get('nome').touched) {
                 <div>
                   <span class="error-message">
                     O campo nome precisa ser preenchido.
                   </span>
                 </div>
                 }
-                <label for="cpf">Digite seu CPF:</label><br />
-                <input type="text" id="cpf" formControlName="cpf" mask="000.000.000-00"/><br />
-                @if(form.get('cpf').hasError('required') && form.get('cpf').touched) {
+                <input
+                  type="text"
+                  id="cpf"
+                  formControlName="cpf"
+                  mask="000.000.000-00"
+                  placeholder="CPF:"
+                /><br />
+                @if(form.get('cpf').hasError('required') &&
+                form.get('cpf').touched) {
                 <div>
                   <span class="error-message">
                     O campo cpf precisa ser preenchido.
                   </span>
                 </div>
+                } @if(form.get('cpf')?.errors?.['invalidCpf'] &&
+                form.get('cpf').value) {
+                <div>
+                  <span class="error-message"> CPF inválido </span>
+                </div>
                 }
-                @if(form.get('cpf')?.errors?.['invalidCpf'] && form.get('cpf').value) {
-                  <div>
-                    <span class="error-message">
-                      CPF inválido
-                    </span>
-                  </div>
-                  }
-                <label for="email">Digite seu email:</label><br />
-                <input type="text" id="email" formControlName="email" /><br />
-                @if(form.get('email').hasError('required') && form.get('email').touched) {
+                <input
+                  type="text"
+                  id="email"
+                  formControlName="email"
+                  placeholder="Email:"
+                /><br />
+                @if(form.get('email').hasError('required') &&
+                form.get('email').touched) {
                 <div>
                   <span class="error-message">
                     O campo e-mail precisa ser preenchido.
                   </span>
                 </div>
                 }
-                <label for="telefone">Digite seu telefone:</label><br />
-                <input type="text" id="telefone" formControlName="telefone" mask="(00) 00000-0000" /><br />
-                @if(form.get('telefone').hasError('required') && form.get('telefone').touched) {
+                <input
+                  type="text"
+                  id="telefone"
+                  formControlName="telefone"
+                  mask="(00) 00000-0000"
+                  placeholder="Telefone:"
+                /><br />
+                @if(form.get('telefone').hasError('required') &&
+                form.get('telefone').touched) {
                 <div>
                   <span class="error-message">
                     O campo telefone precisa ser preenchido.
@@ -70,47 +97,78 @@
                 </div>
                 }
                 <div id="radios">
-                  <input type="radio" formControlName="tipo" id="tipo" name="tipo" value="Membro" checked>
-                  <label for="tipo">Membro</label>
+                  <div class="left-size">
+                    <label class="custom-radio">
+                      <input type="radio" formControlName="tipo"  id="tipo" name="tipo" value="Membro" checked  />
+                      <span class="radio-box"></span>
+                      <label for="tipo">Membro</label>
+                    </label>
+                    <label class="custom-radio">
+                      <input type="radio" formControlName="tipo" id="tipo" name="tipo"  value="Batizante" />
+                      <span class="radio-box"></span>
+                      <label for="tipo">Batizante</label>
+                    </label>
+                  </div>
 
-                  <input type="radio" formControlName="tipo" id="tipo" name="tipo" value="Batizante">
-                  <label for="tipo">Batizante</label>
+                  <div class="right-size">
+                    <label class="custom-radio">
+                      <input type="radio" formControlName="tipo" id="tipo" name="tipo" value="Convidado" />
+                      <span class="radio-box"></span>
+                      <label for="tipo">Convidado</label>
+                    </label>
 
-                  <input type="radio" formControlName="tipo" id="tipo" name="tipo" value="Convidado">
-                  <label for="tipo">Convidado</label>
-
-                  <input type="radio" formControlName="tipo" id="tipo" name="tipo" value="Outro">
-                  <label for="tipo">Outro</label>
+                    <label class="custom-radio">
+                      <input type="radio" formControlName="tipo" id="tipo" name="tipo" value="Outro" />
+                      <span class="radio-box"></span>
+                      <label for="tipo">Outro</label>
+                    </label>
+                  </div>
                 </div>
-                <button id="addIngressButton" type="submit" [disabled]="form.invalid" [ngClass]="{'disabled': !form.valid}">Adicionar
-                  Ingresso</button>
+                <button id="addIngressButton" type="submit" [disabled]="form.invalid" [ngClass]="{ disabled: !form.valid }"
+                >Adicionar Ingresso</button>
               </form>
             </div>
           </div>
         </div>
         <div id="checkoutDiv">
           <div class="accordion">
-            <div class="accordion-item" *ngFor="let ingresso of ingressosCheckout; let i = index">
-              <h5 (click)="toggleAccordionCheckout('item' + i)" class="accordion-header">
-                Ingresso {{ i + 1 }} <img style="width: 20px;"
-                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAvklEQVR4nO3RwQqDMBCE4aGHYt92j75XD7ZPZxEUSsCmarKZ1flhbznMRwCllFJKKeXZDSfYeAfwBNCDNwPwAvDIIcb5elLEON97DZNC2DCWbJsg3dpjVoxtQbBibA+CDWNHECwYK4FojbGSiFYYq4HwxlhNhBfGBVEb44qohWmCKI1piiiFoUAcxVAh9mIoEVsx1Ih/MSEQOUwoxNI0cEiGf98QAfHrZ8L8RA4TEpFiQiOWujMglFJKKaWu3AfcdLEudXvTswAAAABJRU5ErkJggg==">
+            <div
+              class="accordion-item"
+              *ngFor="let ingresso of ingressosCheckout; let i = index"
+            >
+              <h5
+                (click)="toggleAccordionCheckout('item' + i)"
+                class="accordion-header"
+              >
+                Ingresso {{ i + 1 }}
+                <img
+                  style="width: 20px"
+                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAvklEQVR4nO3RwQqDMBCE4aGHYt92j75XD7ZPZxEUSsCmarKZ1flhbznMRwCllFJKKeXZDSfYeAfwBNCDNwPwAvDIIcb5elLEON97DZNC2DCWbJsg3dpjVoxtQbBibA+CDWNHECwYK4FojbGSiFYYq4HwxlhNhBfGBVEb44qohWmCKI1piiiFoUAcxVAh9mIoEVsx1Ih/MSEQOUwoxNI0cEiGf98QAfHrZ8L8RA4TEpFiQiOWujMglFJKKaWu3AfcdLEudXvTswAAAABJRU5ErkJggg=="
+                />
               </h5>
-              <div *ngIf="isAccordionOpenCheckout['item' + i]" class="accordion-content">
+              <div
+                *ngIf="isAccordionOpenCheckout['item' + i]"
+                class="accordion-content"
+              >
                 <div id="ticketImage">
-                  <label>Nome: {{ingresso.nome}}</label><br />
-                  <label>CPF: {{ingresso.cpf}}</label><br />
-                  <label>Email: {{ingresso.email}}</label><br />
-                  <label>Telefone: {{ingresso.telefone}}</label><br />
+                  <label>Nome: {{ ingresso.nome }}</label
+                  ><br />
+                  <label>CPF: {{ ingresso.cpf }}</label
+                  ><br />
+                  <label>Email: {{ ingresso.email }}</label
+                  ><br />
+                  <label>Telefone: {{ ingresso.telefone }}</label
+                  ><br />
                   <div>
-                    <label>Tipo: {{ingresso.tipo}}</label>
+                    <label>Tipo: {{ ingresso.tipo }}</label>
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div *ngIf="ingressosCheckout.length > 0" id="checkoutValue">
-            <span>Total: {{ totalIngressos | currency: 'BRL' }}</span>
-            <p>{{ quantidadeIngressos }} Ingressos</p>
+            <span> <p>Total:</p> {{ totalIngressos | currency : "BRL" }}</span>
+            <span><p>Ingressos:</p> {{ quantidadeIngressos }}</span>
             <button id="checkoutButton" (click)="goCheckout()">Checkout</button>
           </div>
         </div>
@@ -119,12 +177,12 @@
 
     <div class="descricao-do-evento">
       <span>O Que é?</span>
-      <p>{{evento.descricao}}</p>
+      <p>{{ evento.descricao }}</p>
     </div>
 
     <div class="localizacao">
       <span>Onde?</span>
-      <h3>{{evento.localizacao}}</h3>
+      <p>{{ evento.localizacao }}</p>
     </div>
   </div>
 </div>
