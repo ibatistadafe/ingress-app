@@ -8,7 +8,7 @@ import { Eventos } from '../../model/eventos/eventos.model';
   providedIn: 'root'
 })
 export class EventosService {
-  private apiUrl = 'http://192.168.15.6:3000/eventos';
+  private apiUrl = 'http://localhost:3000/eventos';
 
   constructor(private http: HttpClient) {}
 

@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class CadastroService {
 
-  private apiUrl = 'http://192.168.15.6:3000/cadastrar';
+  private apiUrl = 'http://localhost:3000/cadastrar';
 
   constructor(private http: HttpClient) { }
 
