@@ -1,0 +1,85 @@
+/* Estilização para o container principal */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Estilização para a seção de busca */
+.buscar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  padding-top: 1rem;
+}
+
+/* Estilização para o formulário */
+.buscar form {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 600px;
+}
+
+/* Estilização do input de busca */
+#inputBusca {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+/* Estilização do botão de busca */
+button.primary {
+  padding: 5px 10px;
+  background-color: #000000;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+
+/* Seção de resultados */
+.results {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* Estilização responsiva para resultados */
+.results app-reserva {
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 20px;
+}
+
+/* Responsividade */
+@media (min-width: 768px) {
+  .buscar form {
+    flex-direction: row;
+  }
+
+  .results {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .results app-reserva {
+    width: 48%; /* Duas reservas por linha em telas maiores */
+    max-width: 48%;
+  }
+
+}
