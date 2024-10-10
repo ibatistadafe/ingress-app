@@ -1,9 +1,14 @@
 <app-header></app-header>
-<div *ngIf="ingressos">
-  <h1>Checkout</h1>
-  <h1>Codigo: #{{ ingressos.id }}</h1>
-  <h2>Total: {{ ingressos.total | currency: 'BRL' }}</h2>
-  <h2>Pago: {{ingressos.pago}}</h2>
+<div *ngIf="ingressos" class="mainDiv">
+  <div class="divSuccess">
+    <h3>Ingressos emitidos com sucesso!</h3>
+    <h1>Codigo: #{{ ingressos.id }}</h1>
+    <h2>Total: {{ ingressos.total | currency: 'BRL' }}</h2>
+    <h2>Status: {{ingressos.pago? 'Pago': 'Pagamento Pendente'}}</h2>
+  </div>
+  <div class="ingressosTitle">
+    <h2>Ingressos</h2>
+  </div>
   <ul>
     <li *ngFor="let ticket of ingressos.tickets">
       <p>Nome: {{ ticket.nome }}</p>
