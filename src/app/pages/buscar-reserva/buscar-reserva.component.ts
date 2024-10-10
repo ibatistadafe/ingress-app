@@ -3,7 +3,8 @@ import { HeaderComponent } from '../../components/header/header.component';
 import { ReservaComponent } from "../../components/reserva/reserva.component";
 import { ReservaType } from '../../../reseva';
 import { ResevaService } from '../../services/reserva/reseva.service';
-import { CommonModule } from '@angular/common';  // Importar CommonModule
+import { CommonModule } from '@angular/common';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-buscar-reserva',
@@ -18,9 +19,12 @@ export class BuscarReservaComponent {
   reservaList: ReservaType[] = [];
   resevaService: ResevaService = inject(ResevaService);
   filteredReserva: ReservaType[] = [];
+
   constructor() {
-    this.reservaList = this.resevaService.getAllReservas();
-    //this.filteredReserva = this.reservaList;
+    this.resevaService.getAllReservas().subscribe((reservas: ReservaType[])=> {
+      this.reservaList = reservas;
+      // this.filteredReserva = reservas;
+    });
   }
   filterResults(text: string) {
     if (!text) {
@@ -29,7 +33,7 @@ export class BuscarReservaComponent {
     }
 
     this.filteredReserva = this.reservaList.filter(
-      reserva => reserva?.id.toLowerCase().includes(text.toLowerCase())
+      reserva => reserva?.codigo.toLowerCase().includes(text.toLowerCase())
     );
   }
 

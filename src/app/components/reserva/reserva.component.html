@@ -1,13 +1,13 @@
 <div class="ticket">
   <div class="tickets">
     <div class="numero-ticket">
-      <span>{{reserva.id}}</span>
+      <span>{{reserva.codigo}}</span>
     </div>
 
     <!-- ativa com um clique -->
 
     <div class="qrcode">
-      <span>{{reserva.statusPagamento}}</span>
+      <span>{{ reserva.statusPagamento | statusPagamento }}</span>
       <div class="carrossel">
         <i>
           <img src="../../../assets/image/seta-esquerada.png" alt="">
