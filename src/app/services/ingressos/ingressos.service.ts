@@ -7,7 +7,7 @@ import { Ticket, TicketsPackage } from '../../model/eventos/eventos.model';
   providedIn: 'root'
 })
 export class IngressosService {
-  private apiUrl = 'http://192.168.15.4:3000/ingressos';
+  private apiUrl = 'http://localhost:3000/ingressos';
 
   constructor(private http: HttpClient) { }
   

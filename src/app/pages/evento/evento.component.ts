@@ -101,7 +101,7 @@ export class EventoComponent implements OnInit {
   }
 
   calcularValorTotal(): number {
-    return this.eventoIsGratuito(this.evento.valor) ? 0 : this.evento.valor * this.quantidadeIngressos;
+    return this.eventoIsGratuito(this.evento.valor) ? 0 : this.evento.valor * this.ingressosCheckout.length;
   }
 
   emitChart() {
