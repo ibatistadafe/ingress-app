@@ -1,10 +1,6 @@
 <div class="content" *ngIf="evento">
-  <img
-    *ngIf="evento.arquivo"
-    [src]="'data:image/jpeg;base64,' + evento.arquivo"
-    [alt]="evento.descricao"
-    class="evento-image"
-  />
+  <img *ngIf="evento.arquivo" [src]="'data:image/jpeg;base64,' + evento.arquivo" [alt]="evento.descricao"
+    class="evento-image" />
 
   <div class="adquira">
     <h3>ADQUIRA SEU INGRESSO</h3>
@@ -26,19 +22,12 @@
           <div class="accordion-item">
             <h5 (click)="toggleAccordion()" class="accordion-header">
               Preencha os dados
-              <img
-                style="width: 20px"
-                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAvklEQVR4nO3RwQqDMBCE4aGHYt92j75XD7ZPZxEUSsCmarKZ1flhbznMRwCllFJKKeXZDSfYeAfwBNCDNwPwAvDIIcb5elLEON97DZNC2DCWbJsg3dpjVoxtQbBibA+CDWNHECwYK4FojbGSiFYYq4HwxlhNhBfGBVEb44qohWmCKI1piiiFoUAcxVAh9mIoEVsx1Ih/MSEQOUwoxNI0cEiGf98QAfHrZ8L8RA4TEpFiQiOWujMglFJKKaWu3AfcdLEudXvTswAAAABJRU5ErkJggg=="
-              />
+              <img style="width: 20px"
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAvklEQVR4nO3RwQqDMBCE4aGHYt92j75XD7ZPZxEUSsCmarKZ1flhbznMRwCllFJKKeXZDSfYeAfwBNCDNwPwAvDIIcb5elLEON97DZNC2DCWbJsg3dpjVoxtQbBibA+CDWNHECwYK4FojbGSiFYYq4HwxlhNhBfGBVEb44qohWmCKI1piiiFoUAcxVAh9mIoEVsx1Ih/MSEQOUwoxNI0cEiGf98QAfHrZ8L8RA4TEpFiQiOWujMglFJKKaWu3AfcdLEudXvTswAAAABJRU5ErkJggg==" />
             </h5>
             <div *ngIf="isAccordionOpen" class="accordion-content">
               <form [formGroup]="form" (ngSubmit)="emitChart()">
-                <input
-                  type="text"
-                  id="nome"
-                  formControlName="nome"
-                  placeholder="Nome:"
-                /><br />
+                <input type="text" id="nome" formControlName="nome" placeholder="Nome:" /><br />
                 @if(form.get('nome').hasError('required') &&
                 form.get('nome').touched) {
                 <div>
@@ -47,13 +36,7 @@
                   </span>
                 </div>
                 }
-                <input
-                  type="text"
-                  id="cpf"
-                  formControlName="cpf"
-                  mask="000.000.000-00"
-                  placeholder="CPF:"
-                /><br />
+                <input type="text" id="cpf" formControlName="cpf" mask="000.000.000-00" placeholder="CPF:" /><br />
                 @if(form.get('cpf').hasError('required') &&
                 form.get('cpf').touched) {
                 <div>
@@ -67,12 +50,7 @@
                   <span class="error-message"> CPF inválido </span>
                 </div>
                 }
-                <input
-                  type="text"
-                  id="email"
-                  formControlName="email"
-                  placeholder="Email:"
-                /><br />
+                <input type="text" id="email" formControlName="email" placeholder="Email:" /><br />
                 @if(form.get('email').hasError('required') &&
                 form.get('email').touched) {
                 <div>
@@ -81,13 +59,8 @@
                   </span>
                 </div>
                 }
-                <input
-                  type="text"
-                  id="telefone"
-                  formControlName="telefone"
-                  mask="(00) 00000-0000"
-                  placeholder="Telefone:"
-                /><br />
+                <input type="text" id="telefone" formControlName="telefone" mask="(00) 00000-0000"
+                  placeholder="Telefone:" /><br />
                 @if(form.get('telefone').hasError('required') &&
                 form.get('telefone').touched) {
                 <div>
@@ -99,12 +72,12 @@
                 <div id="radios">
                   <div class="left-size">
                     <label class="custom-radio">
-                      <input type="radio" formControlName="tipo"  id="tipo" name="tipo" value="Membro" checked  />
+                      <input type="radio" formControlName="tipo" id="tipo" name="tipo" value="Membro" checked />
                       <span class="radio-box"></span>
                       <label for="tipo">Membro</label>
                     </label>
                     <label class="custom-radio">
-                      <input type="radio" formControlName="tipo" id="tipo" name="tipo"  value="Batizante" />
+                      <input type="radio" formControlName="tipo" id="tipo" name="tipo" value="Batizante" />
                       <span class="radio-box"></span>
                       <label for="tipo">Batizante</label>
                     </label>
@@ -124,41 +97,33 @@
                     </label>
                   </div>
                 </div>
-                <button id="addIngressButton" type="submit" [disabled]="form.invalid" [ngClass]="{ disabled: !form.valid }"
-                >Adicionar Ingresso</button>
+                <button id="addIngressButton" type="submit" [disabled]="form.invalid"
+                  [ngClass]="{ disabled: !form.valid }">Adicionar Ingresso</button>
               </form>
             </div>
           </div>
         </div>
         <div id="checkoutDiv">
           <div class="accordion">
-            <div
-              class="accordion-item"
-              *ngFor="let ingresso of ingressosCheckout; let i = index"
-            >
-              <h5
-                (click)="toggleAccordionCheckout('item' + i)"
-                class="accordion-header"
-              >
-                Ingresso {{ i + 1 }}
-                <img
-                  style="width: 20px"
-                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAvklEQVR4nO3RwQqDMBCE4aGHYt92j75XD7ZPZxEUSsCmarKZ1flhbznMRwCllFJKKeXZDSfYeAfwBNCDNwPwAvDIIcb5elLEON97DZNC2DCWbJsg3dpjVoxtQbBibA+CDWNHECwYK4FojbGSiFYYq4HwxlhNhBfGBVEb44qohWmCKI1piiiFoUAcxVAh9mIoEVsx1Ih/MSEQOUwoxNI0cEiGf98QAfHrZ8L8RA4TEpFiQiOWujMglFJKKaWu3AfcdLEudXvTswAAAABJRU5ErkJggg=="
-                />
-              </h5>
-              <div
-                *ngIf="isAccordionOpenCheckout['item' + i]"
-                class="accordion-content"
-              >
+            <div class="accordion-item" *ngFor="let ingresso of ingressosCheckout; let i = index">
+              <div class="item-accordion">
+                <div>
+                  <h5 (click)="toggleAccordionCheckout('item' + i)" class="accordion-header">
+                    Ingresso {{ i + 1 }}
+                    <img style="width: 20px"
+                      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAvklEQVR4nO3RwQqDMBCE4aGHYt92j75XD7ZPZxEUSsCmarKZ1flhbznMRwCllFJKKeXZDSfYeAfwBNCDNwPwAvDIIcb5elLEON97DZNC2DCWbJsg3dpjVoxtQbBibA+CDWNHECwYK4FojbGSiFYYq4HwxlhNhBfGBVEb44qohWmCKI1piiiFoUAcxVAh9mIoEVsx1Ih/MSEQOUwoxNI0cEiGf98QAfHrZ8L8RA4TEpFiQiOWujMglFJKKaWu3AfcdLEudXvTswAAAABJRU5ErkJggg==" />
+                  </h5>
+                </div>
+                <div>
+                  <a (click)="excluirIngresso(ingresso)">Excluir</a>
+                </div>
+              </div>
+              <div *ngIf="isAccordionOpenCheckout['item' + i]" class="accordion-content">
                 <div id="ticketImage">
-                  <label>Nome: {{ ingresso.nome }}</label
-                  ><br />
-                  <label>CPF: {{ ingresso.cpf }}</label
-                  ><br />
-                  <label>Email: {{ ingresso.email }}</label
-                  ><br />
-                  <label>Telefone: {{ ingresso.telefone }}</label
-                  ><br />
+                  <label>Nome: {{ ingresso.nome }}</label><br />
+                  <label>CPF: {{ ingresso.cpf }}</label><br />
+                  <label>Email: {{ ingresso.email }}</label><br />
+                  <label>Telefone: {{ ingresso.telefone }}</label><br />
                   <div>
                     <label>Tipo: {{ ingresso.tipo }}</label>
                   </div>
@@ -167,8 +132,12 @@
             </div>
           </div>
           <div *ngIf="ingressosCheckout.length > 0" id="checkoutValue">
-            <span> <p>Total:</p> {{ totalIngressos | currency : "BRL" }}</span>
-            <span><p>Ingressos:</p> {{ quantidadeIngressos }}</span>
+            <span>
+              <p>Total:</p> {{ totalIngressos | currency : "BRL" }}
+            </span>
+            <span>
+              <p>Ingressos:</p> {{ quantidadeIngressos }}
+            </span>
             <button id="checkoutButton" (click)="goCheckout()">Checkout</button>
           </div>
         </div>
@@ -186,6 +155,9 @@
     </div>
   </div>
 </div>
+
+
+<ng-toast [width]="600" [position]="ToasterPosition.TOP_CENTER" />
 
 <div *ngIf="!evento" id="eventLoading">
   <p>Carregando evento...</p>

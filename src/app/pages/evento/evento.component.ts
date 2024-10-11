@@ -9,16 +9,21 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } 
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { cpfValidator } from '../../validators/cpf.validator';
 import { RandomIdService } from '../../services/eventos/random-id.service';
+import { IngressosService } from '../../services/ingressos/ingressos.service';
+import { NgToastModule } from 'ng-angular-popup';
+import { NgToastService } from 'ng-angular-popup'
+import { ToasterPosition } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-evento',
   standalone: true,
   templateUrl: './evento.component.html',
   styleUrls: ['./evento.component.scss'],
-  imports: [CommonModule, HeaderComponent, BotaoVerdeComponent, ReactiveFormsModule, NgxMaskDirective, NgxMaskPipe],
+  imports: [CommonModule, HeaderComponent, BotaoVerdeComponent, ReactiveFormsModule, NgxMaskDirective, NgxMaskPipe, NgToastModule],
   providers: [provideNgxMask()]
 })
 export class EventoComponent implements OnInit {
+  ToasterPosition = ToasterPosition;
   public evento: Eventos;
   public quantidadeIngressos: number = 0;
   public descricaoBotao = "Adicionar";
@@ -38,6 +43,8 @@ export class EventoComponent implements OnInit {
     private fb: FormBuilder,
     private randomIdService: RandomIdService,
     private router: Router,
+    private ingressService: IngressosService,
+    private toast: NgToastService,
   ) {}
 
   ngOnInit() {
@@ -98,38 +105,61 @@ export class EventoComponent implements OnInit {
   }
 
   emitChart() {
-    if(this.quantidadeIngressos == 0) {
+    if (this.quantidadeIngressos === 0) {
       this.quantidadeIngressos = 1;
     } else {
       this.quantidadeIngressos++;
     }
+    
+    const novoIngresso = this.form.value;
+    
+    // Verifica se o ingresso já existe na lista
+    const exists = this.ingressosCheckout.some((ingresso: Ingresso) => ingresso.nome === novoIngresso.nome);
+    
+    if (!exists && novoIngresso.nome) {
+      this.ingressosCheckout.push(novoIngresso);
+    }
+  
     this.totalIngressos = this.calcularValorTotal();
-    this.ingressos.push(this.form.value);
-    this.ingressos.forEach((ingresso: Ingresso) => { //logica pra retirar ingressos repetidos (bug)
-      if(ingresso.nome != null) {
-        this.ingressosCheckout.push(ingresso);
-      }
-    });
-    this.verificaIgualdade(this.ingressosCheckout);
     this.form.reset();
   }
+  
 
   verificaIgualdade(array) {
     this.ingressosCheckout = array.filter((item, index) => array.indexOf(item) === index);
   } 
 
+  public excluirIngresso(ingresso: Ticket) {
+    const index = this.ingressosCheckout.indexOf(ingresso);
+    if (index > -1) {
+      this.ingressosCheckout.splice(index, 1);
+  
+      // Recalcula o valor total após a exclusão
+      this.totalIngressos = this.calcularValorTotal();
+      this.quantidadeIngressos--;
+    }
+    this.isAccordionOpen = false;
+  }
+  
+
   public goCheckout() {
-    this.tickets.id = this.randomIdService.generateUniqueId();
     this.tickets.total = this.calcularValorTotal();
-    this.tickets.tickets = [...this.ingressosCheckout];
+    this.tickets.tickets =  [...this.ingressosCheckout];
+    this.tickets.nomeEvento = this.evento.nome;
+    this.tickets.codigo = Number(this.randomIdService.generateUniqueId());
     this.tickets.pago = false;
-  
-    console.log(this.tickets);
-    
-    // Passe o objeto como JSON diretamente
-    const ingressosString = JSON.stringify(this.tickets);
-  
-    this.router.navigate(['/checkout'], { queryParams: { data: ingressosString } });
+
+    this.ingressService.criarIngressos(this.tickets).subscribe({
+      next: (response) => {
+        console.log('Ingressos criados com sucesso:', response);
+        const ingressosString = JSON.stringify(this.tickets);
+        this.router.navigate(['/checkout'], { queryParams: { data: ingressosString } });
+      },
+      error: (error) => {
+        console.error('Erro ao criar ingressos:', error);
+          this.toast.danger("Erro ao criar pacote de ingressos", "Erro", 5000);
+      }
+    });
   }
   
 }

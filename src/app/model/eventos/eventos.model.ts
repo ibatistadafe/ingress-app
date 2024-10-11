@@ -27,6 +27,7 @@ export class Ingresso {
 export class Ticket {
     public id?: string;
     public nome: string;
+    public pago: boolean;
     public cpf: string;
     public email: string;
     public telefone: string;
@@ -36,6 +37,8 @@ export class Ticket {
 
 export class TicketsPackage {
     public id?: string;
+    public codigo: number;
+    public nomeEvento: string;
     public tickets: Array<Ticket>;
     public total: number;
     public pago?: boolean;

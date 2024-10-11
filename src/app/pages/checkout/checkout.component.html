@@ -2,7 +2,7 @@
 <div *ngIf="ingressos" class="mainDiv">
   <div class="divSuccess">
     <h3>Ingressos emitidos com sucesso!</h3>
-    <h1>Codigo: #{{ ingressos.id }}</h1>
+    <h1>Codigo: #{{ ingressos.codigo }}</h1>
     <h2>Total: {{ ingressos.total | currency: 'BRL' }}</h2>
     <h2>Status: {{ingressos.pago? 'Pago': 'Pagamento Pendente'}}</h2>
   </div>

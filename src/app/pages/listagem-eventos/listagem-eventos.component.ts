@@ -5,24 +5,28 @@ import { EventosService } from '../../services/eventos/eventos.service';
 import { Eventos } from '../../model/eventos/eventos.model';
 import { Router } from '@angular/router';
 import { NgxSpinnerModule, NgxSpinnerService } from "ngx-spinner";
-
+import { NgToastModule } from 'ng-angular-popup';
+import { NgToastService } from 'ng-angular-popup'
+import { ToasterPosition } from 'ng-angular-popup';
 
 
 @Component({
   selector: 'app-listagem-eventos',
   standalone: true,
-  imports: [HeaderComponent, CommonModule, NgxSpinnerModule],
+  imports: [HeaderComponent, CommonModule, NgxSpinnerModule, NgToastModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './listagem-eventos.component.html',
   styleUrls: ['./listagem-eventos.component.scss']
 })
 export class ListagemEventosComponent implements OnInit {
+  ToasterPosition = ToasterPosition;
   public listEvents: Array<Eventos> = [];
 
   constructor(
     private _eventosService: EventosService,
     private router: Router,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private toast: NgToastService,
   ) {}
 
   ngOnInit(): void {
@@ -45,7 +49,9 @@ export class ListagemEventosComponent implements OnInit {
         console.log(this.listEvents);
       },
       error: (error) => {
+        this.spinner.hide();
         console.error('Erro ao listar eventos', error);
+        this.toast.danger("Ops, parece que não há eventos.", "Erro", 5000);
       }
     });
   }

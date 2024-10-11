@@ -6,7 +6,7 @@
 
 .divSuccess {
     padding-top: 2rem;
-    height: 23vh;
+    min-height: 23vh;
     color: black;
 }
 
@@ -38,7 +38,7 @@ ul {
         border: solid black 1px;
         border-style: dashed;
         width: 100vw;
-        height: 15rem;
+        min-height: 15rem;
         background-color: rgb(212, 212, 212);
     }
 }

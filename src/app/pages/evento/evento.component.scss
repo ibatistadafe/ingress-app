@@ -148,8 +148,11 @@
 .accordion {
   border-radius: 3px;
   border: solid 0.2px #000;
-  margin: 10px 0;
-  padding: 10px;
+  margin: 0.625rem 0;
+  padding: 0.625rem;
+  gap: 2rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .accordion-item {
@@ -162,6 +165,19 @@
   text-align: left;
   transition: background 0.3s ease;
   font-size: 1.5rem;
+}
+
+.item-accordion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  a {
+    text-decoration: underline !important;
+    text-decoration-color: rgb(180, 180, 180) !important;
+    font-weight: 400;
+    align-content: end;
+  }
 }
 
 .accordion-header:hover {
