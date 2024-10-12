@@ -1,6 +1,6 @@
-import { ReservaType } from './../../../reseva';
 import { Component, Input } from '@angular/core';
 import { StatusPagamentoPipe } from "../../services/reserva/status-pagamento.pipe";
+import { TicketsPackage } from '../../model/eventos/eventos.model';
 
 @Component({
   selector: 'app-reserva',
@@ -10,5 +10,5 @@ import { StatusPagamentoPipe } from "../../services/reserva/status-pagamento.pip
   styleUrl: './reserva.component.scss'
 })
 export class ReservaComponent {
-  @Input() reserva!: ReservaType;
+  @Input() reserva!: TicketsPackage;
 }
