@@ -1,0 +1,26 @@
+<app-header></app-header>
+<div *ngIf="ingressos" class="mainDiv">
+  <div class="divSuccess">
+    <h3>Reserva feita com sucesso!</h3>
+    <h1>Codigo: #{{ ingressos.codigo }}</h1>
+    <h2>Total: {{ ingressos.total | currency: 'BRL' }}</h2>
+    <h2>Status: {{ingressos.pago? 'Pago': 'Pagamento Pendente'}}</h2>
+  </div>
+  <div class="ingressosTitle">
+    <h2>Ingressos</h2>
+  </div>
+  <ul>
+    <li *ngFor="let ticket of ingressos.tickets">
+      <p>Nome: {{ ticket.nome }}</p>
+      <p>CPF: {{ ticket.cpf }}</p>
+      <p>Email: {{ ticket.email }}</p>
+      <p>Telefone: {{ ticket.telefone }}</p>
+      <p>Tipo: {{ ticket.tipo }}</p>
+      <br>
+      <br>
+    </li>
+  </ul>
+</div>
+<div *ngIf="!ingressos">
+  <p>Nenhum ingresso encontrado.</p>
+</div>

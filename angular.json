@@ -34,7 +34,6 @@
               "src/styles.scss",
               "node_modules/ngx-spinner/animations/ball-scale-multiple.css"
             ],
-            
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ],
@@ -98,7 +97,6 @@
             "styles": [
               "src/styles.scss"
             ],
-            
             "scripts": []
           }
         }

@@ -1,0 +1,44 @@
+.mainDiv {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.divSuccess {
+    padding-top: 2rem;
+    min-height: 23vh;
+    color: black;
+}
+
+.ingressosTitle {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-top: solid black 1px;
+    color: white;
+    background-color: black;
+}
+
+p {
+    font-weight: 800;
+    font-size: larger;
+}
+
+ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+
+    li {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        border: solid black 1px;
+        border-style: dashed;
+        width: 100vw;
+        min-height: 15rem;
+        background-color: rgb(212, 212, 212);
+    }
+}

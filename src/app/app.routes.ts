@@ -13,7 +13,11 @@ import { AuthGuard } from './services/guard/auth-guard.service';
 import { EventoComponent } from './pages/evento/evento.component';
 import { CriarEventoComponent } from './pages/criar-evento/criar-evento.component';
 import { PagamentoComponent } from './pages/pagamento/pagamento.component';
+<<<<<<< HEAD
 import { BuscarReservaComponent } from './pages/buscar-reserva/buscar-reserva.component';
+=======
+import { CheckoutComponent } from './pages/checkout/checkout.component';
+>>>>>>> 5b83279820a4fd910472bb3ff6ab6a5c68d4a531
 
 
 export const routes: Routes = [
@@ -29,5 +33,9 @@ export const routes: Routes = [
   { path: 'comprovante', component: ComprovanteComponent },
   { path: 'criar-evento', component: CriarEventoComponent},
   { path: 'pagamento', component: PagamentoComponent},
+<<<<<<< HEAD
   { path: 'buscar-reserva', component: BuscarReservaComponent},
+=======
+  { path: 'checkout', component: CheckoutComponent }
+>>>>>>> 5b83279820a4fd910472bb3ff6ab6a5c68d4a531
 ];
