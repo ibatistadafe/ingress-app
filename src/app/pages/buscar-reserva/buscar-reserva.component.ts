@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { HeaderComponent } from '../../components/header/header.component';
 import { ReservaComponent } from "../../components/reserva/reserva.component";
-import { ReservaType } from '../../../reseva';
 import { ResevaService } from '../../services/reserva/reseva.service';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
+import { TicketsPackage } from '../../model/eventos/eventos.model';
 
 @Component({
   selector: 'app-buscar-reserva',
@@ -16,12 +16,12 @@ import { Observable } from 'rxjs';
 
 export class BuscarReservaComponent {
 
-  reservaList: ReservaType[] = [];
+  reservaList: TicketsPackage[] = [];
   resevaService: ResevaService = inject(ResevaService);
-  filteredReserva: ReservaType[] = [];
+  filteredReserva: TicketsPackage[] = [];
 
   constructor() {
-    this.resevaService.getAllReservas().subscribe((reservas: ReservaType[])=> {
+    this.resevaService.getAllReservas().subscribe((reservas: TicketsPackage[])=> {
       this.reservaList = reservas;
       // this.filteredReserva = reservas;
     });
@@ -33,7 +33,7 @@ export class BuscarReservaComponent {
     }
 
     this.filteredReserva = this.reservaList.filter(
-      reserva => reserva?.codigo.toLowerCase().includes(text.toLowerCase())
+      reserva => reserva?.codigo.toString().toLowerCase().includes(text.toLowerCase())
     );
   }
 
