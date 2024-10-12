@@ -11,7 +11,7 @@ export class RandomIdService {
   }
 
   generateUniqueId(): string | null {
-    if (this.generatedIds.size >= 10000) {
+    if (this.generatedIds.size >= 10000 ) {
       // Limite de 10.000 IDs únicos (0000 a 9999)
       return null;
     }
