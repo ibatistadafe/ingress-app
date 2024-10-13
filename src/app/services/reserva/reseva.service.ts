@@ -8,7 +8,7 @@ import { TicketsPackage } from '../../model/eventos/eventos.model';
   providedIn: 'root'
 })
 export class ResevaService {
-  baseUrl = "http://localhost:3001/reservas"
+  baseUrl = "http://localhost:3000/ingressos/codigo"
 
   constructor(private http: HttpClient){ }
 
