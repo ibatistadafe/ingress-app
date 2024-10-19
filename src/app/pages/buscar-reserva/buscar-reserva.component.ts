@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { HeaderComponent } from '../../components/header/header.component';
 import { ReservaComponent } from "../../components/reserva/reserva.component";
 import { ResevaService } from '../../services/reserva/reseva.service';
@@ -19,7 +19,10 @@ export class BuscarReservaComponent {
   evento: any = null;
   erro: string = '';
   pago: false;
-  constructor(private resevaService: ResevaService, private alterarReservaService: AlterarReservaService) { }
+  constructor(private resevaService: ResevaService,
+    private alterarReservaService: AlterarReservaService,
+    private cdr: ChangeDetectorRef
+  ) { }
 
   buscarEvento() {
     this.resevaService.getEventoByCodigo(this.codigo).subscribe({
@@ -36,11 +39,13 @@ export class BuscarReservaComponent {
 
 
   onStatusChange(status: boolean) {
-    const codigo = this.evento.codigo; // Pega o código do evento
+    const codigo = this.evento.codigo;
 
     const subscription = this.alterarReservaService.putAlterarReserva(codigo, status).subscribe({
       next: (response) => {
         console.log('Reserva alterada com sucesso', response);
+        this.evento.status = status;
+        this.cdr.detectChanges()
         subscription.unsubscribe();
       },
       error: (error) => {
