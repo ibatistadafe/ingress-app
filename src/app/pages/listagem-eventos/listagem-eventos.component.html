@@ -10,26 +10,33 @@
 </ngx-spinner>
 <app-header></app-header>
 <div class="content">
+
+    <!-- alteração no menu -->
     <div class="box-title pt-4">
-        <div class="hamburger-menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <h3 class="title">EVENTOS</h3>
+      <div class="hamburger-menu" (click)="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <h3 class="title">EVENTOS</h3>
+    </div>
+
+    <!-- Botão que redireciona para /buscar-reserva -->
+    <div *ngIf="menuOpen" class="menu-options">
+      <button (click)="redirecionarBuscarReserva()">Buscar Reserva</button>
     </div>
 
     <div class="list-events d-flex flex-column">
-        <div class="event flex-column align-items-center justify-content-center" 
-             *ngFor="let event of listEvents" 
+        <div class="event flex-column align-items-center justify-content-center"
+             *ngFor="let event of listEvents"
              >
             <div class="image-description d-flex align-items-center">
-                <img 
+                <img
                     *ngIf="event.arquivo"
-                    [src]="'data:image/jpeg;base64,' + event.arquivo" 
+                    [src]="'data:image/jpeg;base64,' + event.arquivo"
                     [alt]="event.descricao"
                     (click)="redirecionaEvento(event.id)"
-                    class="event-image"> 
+                    class="event-image">
                 </div>
                 <div class="event-info">
                     <h3>{{event.nome}}</h3>

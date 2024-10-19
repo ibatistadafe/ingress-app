@@ -19,6 +19,7 @@ import { ToasterPosition } from 'ng-angular-popup';
   styleUrls: ['./listagem-eventos.component.scss']
 })
 export class ListagemEventosComponent implements OnInit {
+  menuOpen = false;
   ToasterPosition = ToasterPosition;
   public listEvents: Array<Eventos> = [];
 
@@ -67,11 +68,23 @@ export class ListagemEventosComponent implements OnInit {
     return window.btoa(chunks.join('')); // Converte a string completa para base64
   }
 
+  //codigo para o menu
+
+
+
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
+
   public redirecionaEvento(id: string) {
     this.router.navigate([`/evento/${id}`]);
-  }  
+  }
 
   public redirecionaCriarEvento() {
     this.router.navigate(['/criar-evento']);
+  }
+
+  public redirecionarBuscarReserva() {
+    this.router.navigate(['/buscar-reserva']);
   }
 }
