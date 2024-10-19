@@ -5,6 +5,8 @@ import { ResevaService } from '../../services/reserva/reseva.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AlterarReservaService } from '../../services/reserva/alterar-reserva.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-buscar-reserva',
@@ -21,7 +23,8 @@ export class BuscarReservaComponent {
   pago: false;
   constructor(private resevaService: ResevaService,
     private alterarReservaService: AlterarReservaService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private router: Router,
   ) { }
 
   buscarEvento() {
@@ -53,6 +56,10 @@ export class BuscarReservaComponent {
         subscription.unsubscribe();
       }
     });
+  }
+
+  redirecionarHome(){
+    this.router.navigate(['/lista-eventos']);
   }
 
 }

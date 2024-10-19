@@ -1,4 +1,6 @@
 <div class="ticket-container">
+
+
   <h2 class="title">Buscar Evento</h2>
 
   <div class="input-group">
@@ -25,9 +27,6 @@
       </div>
     </div>
 
-
-
-
     <h4 class="tickets-title">Tickets:</h4>
     <ul class="tickets-list">
       <li *ngFor="let ticket of evento.tickets" class="ticket-item">
@@ -36,9 +35,13 @@
         <p><strong>Pago:</strong> {{ ticket.pago ? 'Sim' : 'Não' }}</p>
       </li>
     </ul>
+
+    <button (click)="redirecionarHome()" class="search-button">Voltar</button>
   </div>
 
   <div *ngIf="erro" class="error-message">
     <p>{{ erro }}</p>
   </div>
+
 </div>
+
