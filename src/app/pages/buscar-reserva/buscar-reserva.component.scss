@@ -5,6 +5,13 @@
   background-color: rgb(27, 27, 27);
 }
 
+//retira spiner do campo de buscas
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 
 .ticket-container {
   max-width: 600px;
@@ -35,6 +42,7 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #121212;
+  color: aliceblue;
 }
 
 .search-button {
