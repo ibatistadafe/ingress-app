@@ -41,22 +41,23 @@ export class BuscarReservaComponent {
 }
 
 
-  onStatusChange(status: boolean) {
-    const codigo = this.evento.codigo;
+onStatusChange(status: boolean) {
+  const codigo = this.evento.codigo;
 
-    const subscription = this.alterarReservaService.putAlterarReserva(codigo, status).subscribe({
-      next: (response) => {
-        console.log('Reserva alterada com sucesso', response);
-        this.evento.status = status;
-        this.cdr.detectChanges()
-        subscription.unsubscribe();
-      },
-      error: (error) => {
-        console.error('Erro ao alterar a reserva', error);
-        subscription.unsubscribe();
-      }
-    });
-  }
+  const subscription = this.alterarReservaService.putAlterarReserva(codigo, status).subscribe({
+    next: (response) => {
+      console.log('Reserva alterada com sucesso', response);
+      this.evento.status = status;
+      this.buscarEvento();  // Refaz a busca após a atualização do status
+      this.cdr.detectChanges();
+      subscription.unsubscribe();
+    },
+    error: (error) => {
+      console.error('Erro ao alterar a reserva', error);
+      subscription.unsubscribe();
+    }
+  });
+}
 
   redirecionarHome(){
     this.router.navigate(['/lista-eventos']);
