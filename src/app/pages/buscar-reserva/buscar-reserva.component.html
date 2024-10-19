@@ -1,32 +1,44 @@
-<app-header></app-header>
+<div class="ticket-container">
+  <h2 class="title">Buscar Evento</h2>
 
-<div class="conatainer">
-  <!-- quando apertar o enter exibir lista -->
-  <!-- caixa de busca -->
-  <section class="buscar">
-    <!-- usando o onkeypress -->
+  <div class="input-group">
+    <input
+      type="number"
+      class="input-field"
+      [(ngModel)]="codigo"
+      placeholder="Digite o código do evento"
+    />
+    <button class="search-button" (click)="buscarEvento()">Buscar</button>
+  </div>
 
-    <form>
-      <input
-        type="text"
-        id="inputBusca"
-        placeholder="Busque a reserva"
-        #filterInput
-      />
-      <button
-        class="primary"
-        type="button"
-        (click)="filterResults(filterInput.value)"
-      >
-        Buscar
-      </button>
-    </form>
-  </section>
-  <!-- condição para aparecer -->
-  <section class="results">
-    <app-reserva
-      *ngFor="let reserva of filteredReserva"
-      [reserva]="reserva">
-    </app-reserva>
-  </section>
+  <div *ngIf="evento" class="ticket-card">
+    <h3 class="event-name">{{ evento.nomeEvento }}</h3>
+    <div class="event-details">
+      <p><strong>Código:</strong> {{ evento.codigo }}</p>
+      <p><strong>Total:</strong> {{ evento.total }}</p>
+
+      <div class="payment-status">
+        <label>
+          <input type="checkbox" [(ngModel)]="evento.pago" /> <!-- Bind the checkbox to the 'pago' property -->
+          {{ evento.pago ? 'Pago' : 'Pendente' }}
+        </label>
+      </div>
+    </div>
+
+
+
+
+    <h4 class="tickets-title">Tickets:</h4>
+    <ul class="tickets-list">
+      <li *ngFor="let ticket of evento.tickets" class="ticket-item">
+        <p><strong>Nome:</strong> {{ ticket.nome }}</p>
+        <p><strong>CPF:</strong> {{ ticket.cpf }}</p>
+        <p><strong>Pago:</strong> {{ ticket.pago ? 'Sim' : 'Não' }}</p>
+      </li>
+    </ul>
+  </div>
+
+  <div *ngIf="erro" class="error-message">
+    <p>{{ erro }}</p>
+  </div>
 </div>

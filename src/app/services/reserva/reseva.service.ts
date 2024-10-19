@@ -12,17 +12,13 @@ export class ResevaService {
 
   constructor(private http: HttpClient){ }
 
+  //esta puxando por codigo
+  getEventoByCodigo(codigo: number): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/${codigo}`);
+  }
+
   //esta puxando todas as reservas
   getAllReservas(): Observable<TicketsPackage[]> {
     return this.http.get<TicketsPackage[]>(this.baseUrl);
   }
-
-  //esta puxando por id
-  getReservaId(id: string): Observable<TicketsPackage[]> {
-    const url = `${this.baseUrl}/${id}`;
-    return this.http.get<TicketsPackage[]>(url);
-    //return this.listarReserva.find(listaReserva => listaReserva.id === id);
-  }
-
-
 }
