@@ -19,7 +19,7 @@
 
       <div class="payment-status">
         <label>
-          <input type="checkbox" [(ngModel)]="evento.pago" /> <!-- Bind the checkbox to the 'pago' property -->
+          <input type="checkbox" [(ngModel)]="evento.pago" (change)="onStatusChange(evento.pago)"/> <!-- Bind the checkbox to the 'pago' property -->
           {{ evento.pago ? 'Pago' : 'Pendente' }}
         </label>
       </div>

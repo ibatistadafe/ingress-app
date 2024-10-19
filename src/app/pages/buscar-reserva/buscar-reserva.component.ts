@@ -4,6 +4,7 @@ import { ReservaComponent } from "../../components/reserva/reserva.component";
 import { ResevaService } from '../../services/reserva/reseva.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AlterarReservaService } from '../../services/reserva/alterar-reserva.service';
 
 @Component({
   selector: 'app-buscar-reserva',
@@ -17,23 +18,34 @@ export class BuscarReservaComponent {
   codigo!: number;
   evento: any = null;
   erro: string = '';
-
-  constructor(private resevaService: ResevaService) { }
+  pago: false;
+  constructor(private resevaService: ResevaService, private alterarReservaService: AlterarReservaService) { }
 
   buscarEvento() {
     this.resevaService.getEventoByCodigo(this.codigo).subscribe({
-      next: (data) => {
-        if (data && data.length > 0) {
-          this.evento = data[0];  // Pegue o primeiro item do array
-          this.erro = '';
-        } else {
-          this.erro = 'Evento não encontrado.';
-          this.evento = null;
+        next: (data) => {
+            this.evento = data?.length ? data[0] : null;
+            this.erro = this.evento ? '' : 'Evento não encontrado.';
+        },
+        error: () => {
+            this.erro = 'Erro ao buscar o evento.';
+            this.evento = null;
         }
+    });
+}
+
+
+  onStatusChange(status: boolean) {
+    const codigo = this.evento.codigo; // Pega o código do evento
+
+    const subscription = this.alterarReservaService.putAlterarReserva(codigo, status).subscribe({
+      next: (response) => {
+        console.log('Reserva alterada com sucesso', response);
+        subscription.unsubscribe();
       },
-      error: (err) => {
-        this.erro = 'Erro ao buscar o evento.';
-        this.evento = null;
+      error: (error) => {
+        console.error('Erro ao alterar a reserva', error);
+        subscription.unsubscribe();
       }
     });
   }
