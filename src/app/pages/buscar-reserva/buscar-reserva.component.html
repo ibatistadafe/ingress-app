@@ -1,0 +1,48 @@
+<app-header></app-header>
+<div class="ticket-container">
+
+
+  <h2 class="title">Buscar Evento</h2>
+
+  <div class="input-group">
+    <input
+      type="number"
+      class="input-field"
+      [(ngModel)]="codigo"
+      placeholder="Digite o código do evento"
+    />
+    <button class="search-button" (click)="buscarEvento()">Buscar</button>
+  </div>
+
+  <div *ngIf="evento" class="ticket-card">
+    <h3 class="event-name">{{ evento.nomeEvento }}</h3>
+    <div class="event-details">
+      <p><strong>Código:</strong> #{{ evento.codigo }}</p>
+      <p><strong>Total:</strong> {{ evento.total | currency : "BRL" }}</p>
+
+      <div class="payment-status">
+        <label>
+          <input type="checkbox" [(ngModel)]="evento.pago" (change)="onStatusChange(evento.pago)"/> <!-- Bind the checkbox to the 'pago' property -->
+          {{ evento.pago ? 'Pago' : 'Pendente' }}
+        </label>
+      </div>
+    </div>
+
+    <h4 class="tickets-title">Tickets:</h4>
+    <ul class="tickets-list">
+      <li *ngFor="let ticket of evento.tickets" class="ticket-item">
+        <p><strong>Nome:</strong> {{ ticket.nome }}</p>
+        <p><strong>CPF:</strong> {{ ticket.cpf }}</p>
+        <p><strong>Pago:</strong> {{ ticket.pago ? 'Sim' : 'Não' }}</p>
+      </li>
+    </ul>
+
+    <button (click)="redirecionarHome()" class="search-button">Voltar</button>
+  </div>
+
+  <div *ngIf="erro" class="error-message">
+    <h6>{{ erro }}</h6>
+  </div>
+
+</div>
+

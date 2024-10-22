@@ -1,0 +1,75 @@
+/* Estilização base para o ticket */
+.ticket {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
+
+.tickets {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 600px;
+  width: 100%;
+}
+
+/* Estilização para o número do ticket */
+.numero-ticket {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Estilização para o qrcode */
+.qrcode {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Carrossel de imagens */
+.carrossel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.carrossel img {
+  max-width: 50px;
+  height: auto;
+  cursor: pointer;
+}
+
+/* Estilização do texto de status */
+.qrcode h4 {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: normal;
+}
+
+/* Responsividade */
+@media (min-width: 768px) {
+  .tickets {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .numero-ticket, .qrcode {
+    flex: 1;
+  }
+
+  .qrcode {
+    flex-direction: column;
+  }
+
+  .carrossel img {
+    max-width: 100px;
+  }
+}

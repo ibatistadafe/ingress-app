@@ -5,24 +5,29 @@ import { EventosService } from '../../services/eventos/eventos.service';
 import { Eventos } from '../../model/eventos/eventos.model';
 import { Router } from '@angular/router';
 import { NgxSpinnerModule, NgxSpinnerService } from "ngx-spinner";
-
+import { NgToastModule } from 'ng-angular-popup';
+import { NgToastService } from 'ng-angular-popup'
+import { ToasterPosition } from 'ng-angular-popup';
 
 
 @Component({
   selector: 'app-listagem-eventos',
   standalone: true,
-  imports: [HeaderComponent, CommonModule, NgxSpinnerModule],
+  imports: [HeaderComponent, CommonModule, NgxSpinnerModule, NgToastModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './listagem-eventos.component.html',
   styleUrls: ['./listagem-eventos.component.scss']
 })
 export class ListagemEventosComponent implements OnInit {
+  menuOpen = false;
+  ToasterPosition = ToasterPosition;
   public listEvents: Array<Eventos> = [];
 
   constructor(
     private _eventosService: EventosService,
     private router: Router,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private toast: NgToastService,
   ) {}
 
   ngOnInit(): void {
@@ -45,7 +50,9 @@ export class ListagemEventosComponent implements OnInit {
         console.log(this.listEvents);
       },
       error: (error) => {
+        this.spinner.hide();
         console.error('Erro ao listar eventos', error);
+        this.toast.danger("Ops, parece que não há eventos.", "Erro", 5000);
       }
     });
   }
@@ -61,11 +68,23 @@ export class ListagemEventosComponent implements OnInit {
     return window.btoa(chunks.join('')); // Converte a string completa para base64
   }
 
+  //codigo para o menu
+
+
+
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
+
   public redirecionaEvento(id: string) {
     this.router.navigate([`/evento/${id}`]);
-  }  
+  }
 
   public redirecionaCriarEvento() {
     this.router.navigate(['/criar-evento']);
+  }
+
+  public redirecionarBuscarReserva() {
+    this.router.navigate(['/buscar-reserva']);
   }
 }
