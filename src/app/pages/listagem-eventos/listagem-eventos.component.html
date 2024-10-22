@@ -24,6 +24,7 @@
     <!-- Botão que redireciona para /buscar-reserva -->
     <div *ngIf="menuOpen" class="menu-options">
       <button (click)="redirecionarBuscarReserva()">Buscar Reserva</button>
+      <button (click)="redirecionaCriarEvento()">Criar Evento</button>
     </div>
 
     <div class="list-events d-flex flex-column">
@@ -48,5 +49,4 @@
             </div>
         </div>
     </div>
-    <button (click)="redirecionaCriarEvento()">Criar Evento</button>
 <ng-toast [width]="600" [position]="ToasterPosition.TOP_CENTER" />

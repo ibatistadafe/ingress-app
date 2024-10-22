@@ -31,4 +31,5 @@ export const routes: Routes = [
   { path: 'criar-evento', component: CriarEventoComponent},
   { path: 'pagamento', component: PagamentoComponent},
   { path: 'buscar-reserva', component: BuscarReservaComponent},
+  { path: 'checkout', component: CheckoutComponent }
 ];

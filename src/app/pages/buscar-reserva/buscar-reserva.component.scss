@@ -3,6 +3,7 @@
   width: 100vw;
   height: 100vh;
   background-color: rgb(27, 27, 27);
+  font-weight: 500;
 }
 
 //retira spiner do campo de buscas
@@ -22,6 +23,7 @@ input[type=number]::-webkit-inner-spin-button {
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   color: #f1f1f1;
+  font-weight: 500;
 }
 
 .title {
@@ -33,6 +35,7 @@ input[type=number]::-webkit-inner-spin-button {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
+  font-weight: 500;
 }
 
 .input-field {
@@ -43,15 +46,17 @@ input[type=number]::-webkit-inner-spin-button {
   border-radius: 5px;
   background-color: #121212;
   color: aliceblue;
+  font-weight: 500;
 }
 
 .search-button {
   padding: 10px 20px;
-  margin-left: 10px;
+  width: 90%;
   background-color: #000000;
   color: white;
   border: none;
   border-radius: 5px;
+  font-weight: 500; 
   cursor: pointer;
 }
 
@@ -66,6 +71,7 @@ input[type=number]::-webkit-inner-spin-button {
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
+  font-weight: 500;
 }
 
 .event-name {
@@ -75,16 +81,20 @@ input[type=number]::-webkit-inner-spin-button {
 
 .event-details p {
   margin: 5px 0;
+  justify-content: center;
+  font-weight: 500;
 }
 
 .tickets-title {
   margin-top: 20px;
   font-size: 18px;
+  font-weight: 500;
 }
 
 .tickets-list {
   list-style: none;
   padding: 0;
+  font-weight: 500;
 }
 
 .ticket-item {
@@ -92,14 +102,17 @@ input[type=number]::-webkit-inner-spin-button {
   padding: 10px;
   margin-bottom: 10px;
   border-radius: 5px;
+  font-weight: 500;
 }
 
 .ticket-item p {
   margin: 3px 0;
+  font-weight: 500;
 }
 
 .error-message {
-  color: red;
+  font-weight: 500;
+  color: rgb(255, 0, 0);
   text-align: center;
   margin-top: 20px;
 }
@@ -120,10 +133,12 @@ input[type=number]::-webkit-inner-spin-button {
 
 .payment-status {
   margin-top: 10px;
+  font-weight: 500;
 }
 
 .payment-status label {
   font-size: 16px;
+  font-weight: 500;
 }
 
 .payment-status input[type="checkbox"] {

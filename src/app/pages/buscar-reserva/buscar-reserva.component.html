@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div class="ticket-container">
 
 
@@ -16,8 +17,8 @@
   <div *ngIf="evento" class="ticket-card">
     <h3 class="event-name">{{ evento.nomeEvento }}</h3>
     <div class="event-details">
-      <p><strong>Código:</strong> {{ evento.codigo }}</p>
-      <p><strong>Total:</strong> {{ evento.total }}</p>
+      <p><strong>Código:</strong> #{{ evento.codigo }}</p>
+      <p><strong>Total:</strong> {{ evento.total | currency : "BRL" }}</p>
 
       <div class="payment-status">
         <label>
@@ -40,7 +41,7 @@
   </div>
 
   <div *ngIf="erro" class="error-message">
-    <p>{{ erro }}</p>
+    <h6>{{ erro }}</h6>
   </div>
 
 </div>

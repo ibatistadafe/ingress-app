@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-buscar-reserva',
   standalone: true,
-  imports: [HeaderComponent, ReservaComponent, CommonModule, FormsModule],
+  imports: [HeaderComponent, ReservaComponent, CommonModule, FormsModule, HeaderComponent],
   templateUrl: './buscar-reserva.component.html',
   styleUrl: './buscar-reserva.component.scss'
 })
@@ -31,7 +31,7 @@ export class BuscarReservaComponent {
     this.resevaService.getEventoByCodigo(this.codigo).subscribe({
         next: (data) => {
             this.evento = data?.length ? data[0] : null;
-            this.erro = this.evento ? '' : 'Evento não encontrado.';
+            this.erro = this.evento ? '' : 'Reserva não encontrada.';
         },
         error: () => {
             this.erro = 'Erro ao buscar o evento.';

@@ -2,6 +2,7 @@
 <div *ngIf="ingressos" class="mainDiv">
   <div class="divSuccess">
     <h3>Reserva feita com sucesso!</h3>
+    <p>Atenção: Informe o código da reserva para o comprador.</p>
     <h1>Codigo: #{{ ingressos.codigo }}</h1>
     <h2>Total: {{ ingressos.total | currency: 'BRL' }}</h2>
     <h2>Status: {{ingressos.pago? 'Pago': 'Pagamento Pendente'}}</h2>
@@ -19,6 +20,7 @@
       <br>
       <br>
     </li>
+    <button (click)="goHome()">Voltar</button>
   </ul>
 </div>
 <div *ngIf="!ingressos">

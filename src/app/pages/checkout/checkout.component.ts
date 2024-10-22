@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../../components/header/header.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Ticket, TicketsPackage } from '../../model/eventos/eventos.model';
 import { CommonModule } from '@angular/common';
 
@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
 export class CheckoutComponent implements OnInit {
   public ingressos: TicketsPackage;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -26,4 +26,7 @@ export class CheckoutComponent implements OnInit {
     });
   }
   
+  public goHome() {
+    this.router.navigate(['lista-eventos']);
+  }
 }
