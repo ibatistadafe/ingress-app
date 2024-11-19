@@ -28,6 +28,10 @@ export class DadosPessoaisComponent {
       this.porcentagemLargura = '25%';
     }
   ngOnInit(): void {
+    document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+
+
     this.form = this.fb.group({
       nome_completo: new FormControl('', Validators.required),
       cpf: new FormControl('', [Validators.required]),
@@ -35,8 +39,7 @@ export class DadosPessoaisComponent {
       confirmar_email: new FormControl('', [Validators.required, this.verificaSeEmailsCoincidem('email')]),
       data_nascimento: new FormControl('', Validators.required),
       telefone: new FormControl('', Validators.required),
-
-    })
+    });
   }
 
   public verificaSeEmailsCoincidem(matchTo: string): (control: AbstractControl) => { [key: string]: boolean } | null {

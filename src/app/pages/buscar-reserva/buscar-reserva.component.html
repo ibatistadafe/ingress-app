@@ -12,6 +12,11 @@
       placeholder="Digite o código do evento"
     />
     <button class="search-button" (click)="buscarEvento()">Buscar</button>
+    <button class="search-button-qr" (click)="buscarEventoQr()">Ler qrCode</button>
+    <video #videoElement autoplay playsinline *ngIf="qrReaderIsOpen"></video>
+    <div class="video-container" style="display: none;">
+      <canvas id="canvas" #canvas></canvas>
+    </div>
   </div>
 
   <div *ngIf="evento" class="ticket-card">

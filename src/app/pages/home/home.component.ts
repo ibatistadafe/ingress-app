@@ -10,9 +10,13 @@ import { Router } from '@angular/router';
 })
 export class homeComponent {
 
+  ngOnInit() {
+    window.scrollTo(0, 0);
+  }
+
   constructor(private router: Router) {}
  public navegarParaTelaCadastrar() : void {
-  this.router.navigate(['/form-dados-pessoais']);
+  this.router.navigate(['/termos-condicoes']);
  }
 
  public navegarParaTelaLogin() : void {

@@ -8,7 +8,7 @@ import { Eventos } from '../../model/eventos/eventos.model';
   providedIn: 'root'
 })
 export class EventosService {
-  private apiUrl = 'http://localhost:3000/eventos';
+  private apiUrl = 'https://4361-2804-7f0-471-c2d-6bad-6cd7-e100-8670.ngrok-free.app/eventos';
 
   constructor(private http: HttpClient) {}
 

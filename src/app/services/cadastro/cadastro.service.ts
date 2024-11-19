@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class CadastroService {
 
-  private apiUrl = 'http://localhost:3000/cadastrar';
+  private apiUrl = 'https://4361-2804-7f0-471-c2d-6bad-6cd7-e100-8670.ngrok-free.app/cadastrar';
 
   constructor(private http: HttpClient) { }
 

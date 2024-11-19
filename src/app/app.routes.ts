@@ -15,6 +15,7 @@ import { CriarEventoComponent } from './pages/criar-evento/criar-evento.componen
 import { PagamentoComponent } from './pages/pagamento/pagamento.component';
 import { BuscarReservaComponent } from './pages/buscar-reserva/buscar-reserva.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
+import { TermosECondicoesComponent } from './pages/termos-e-condicoes/termos-e-condicoes.component';
 
 
 export const routes: Routes = [
@@ -31,5 +32,6 @@ export const routes: Routes = [
   { path: 'criar-evento', component: CriarEventoComponent},
   { path: 'pagamento', component: PagamentoComponent},
   { path: 'buscar-reserva', component: BuscarReservaComponent},
-  { path: 'checkout', component: CheckoutComponent }
+  { path: 'checkout', component: CheckoutComponent },
+  { path: 'termos-condicoes', component: TermosECondicoesComponent }
 ];

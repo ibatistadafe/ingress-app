@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AlterarReservaService {
-  baseurl = "http://localhost:3000/reserva/ingressos";
+  baseurl = "https://4361-2804-7f0-471-c2d-6bad-6cd7-e100-8670.ngrok-free.app/reserva/ingressos";
 
   constructor(private http: HttpClient) { }
 

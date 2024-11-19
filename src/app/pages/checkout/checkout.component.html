@@ -2,6 +2,7 @@
 <div *ngIf="ingressos" class="mainDiv">
   <div class="divSuccess">
     <h3>Reserva feita com sucesso!</h3>
+    <qrcode [qrdata]="ingressos.codigo.toString()" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
     <p>Atenção: Informe o código da reserva para o comprador.</p>
     <h1>Codigo: #{{ ingressos.codigo }}</h1>
     <h2>Total: {{ ingressos.total | currency : "BRL" }}</h2>

@@ -1,0 +1,113 @@
+<main>
+    <div class="headerDiv">
+        <app-header></app-header>
+        <h1>Bem Vindo!</h1>
+    </div>
+    
+    <div class="mainContent">
+        <h5>Ao acessar e utilizar nossa aplicação, você concorda expressamente com os seguintes Termos e Condições de Uso e com a coleta, processamento e armazenamento dos seus dados pessoais conforme descrito abaixo.</h5>
+        
+        <section>
+            <h6>1. Coleta de Dados Pessoais</h6>
+            <p>
+                Durante o uso da nossa aplicação, poderemos coletar os seguintes tipos de dados pessoais, dependendo das funcionalidades que você acessar:
+            </p>
+            <ul>
+                <li>Informações de identificação pessoal, como nome, e-mail, telefone, endereço, etc.</li>
+                <li>Dados de uso da aplicação, como registros de atividades e preferências de uso.</li>
+                <li>Informações fornecidas voluntariamente por você, como dados de formulários, feedback ou outras interações.</li>
+            </ul>
+            <label>
+                <input type="checkbox" name="coleta_dados" required (click)="acceptPersonalData = !acceptPersonalData" (onchange)="verifyAcceptTermsAndConditions()">
+                Eu concordo com a coleta de dados pessoais.
+            </label>
+        </section>
+        <hr>
+        <section>
+            <h6>2. Finalidade da Coleta de Dados</h6>
+            <p>
+                Os dados coletados serão utilizados para as seguintes finalidades:
+            </p>
+            <ul>
+                <li>Para fornecer, melhorar e personalizar os serviços oferecidos pela nossa aplicação.</li>
+                <li>Para comunicação com você sobre atualizações, notificações e outros assuntos relevantes relacionados ao uso da aplicação.</li>
+                <li>Para análise de uso da aplicação e melhoria contínua dos nossos serviços.</li>
+                <li>Para cumprimento de obrigações legais e regulatórias, quando necessário.</li>
+            </ul>
+            <label>
+                <input type="checkbox" name="finalidade_coleta" required (click)="acceptPersonalDataFinnality = !acceptPersonalDataFinnality" (onchange)="verifyAcceptTermsAndConditions()">
+                Eu concordo com as finalidades para as quais meus dados serão coletados.
+            </label>
+        </section>
+        <hr>
+        <section>
+            <h6>3. Consentimento</h6>
+            <p>
+                Ao aceitar os Termos e Condições de Uso, você nos dá consentimento explícito para coletar, processar e armazenar seus dados pessoais conforme descrito nesta política. Você tem o direito de retirar esse consentimento a qualquer momento, o que pode ser feito através das configurações da aplicação ou entrando em contato conosco diretamente. A retirada do consentimento pode afetar a sua experiência e a funcionalidade dos serviços prestados pela aplicação.
+            </p>
+            <label>
+                <input type="checkbox" name="consentimento" required (click)="acceptPersonalDataProccess = !acceptPersonalDataProccess" (onchange)="verifyAcceptTermsAndConditions()">
+                Eu concordo com a coleta, processamento e armazenamento dos meus dados pessoais.
+            </label>
+        </section>
+        <hr>
+        <section>
+            <h6>4. Armazenamento e Proteção dos Dados</h6>
+            <p>
+                Nós nos comprometemos a adotar medidas de segurança para proteger seus dados pessoais contra acessos não autorizados, perda ou alteração indevida. No entanto, é importante lembrar que nenhuma transmissão de dados pela internet é totalmente segura, e embora tomemos todas as precauções necessárias, não podemos garantir a segurança absoluta.
+            </p>
+            <label>
+                <input type="checkbox" name="seguranca_dados" required (click)="acceptPersonalDataRisks = !acceptPersonalDataRisks" (onchange)="verifyAcceptTermsAndConditions()">
+                Eu entendo e aceito os riscos relacionados ao armazenamento e proteção dos meus dados.
+            </label>
+        </section>
+        <hr>
+        <section>
+            <h6>5. Compartilhamento de Dados</h6>
+            <p>
+                Não compartilhamos seus dados pessoais com terceiros, exceto quando necessário para o funcionamento da aplicação ou quando exigido por lei. Caso haja necessidade de compartilhar seus dados com parceiros ou prestadores de serviços, faremos isso de acordo com os princípios da privacidade e conforme a legislação aplicável.
+            </p>
+            <label>
+                <input type="checkbox" name="compartilhamento_dados" required (click)="acceptPersonalDataShare = !acceptPersonalDataShare" (onchange)="verifyAcceptTermsAndConditions()">
+                Eu concordo com o compartilhamento dos meus dados conforme descrito.
+            </label>
+        </section>
+        <hr>
+        <section>
+            <h6>6. Seus Direitos</h6>
+            <p>
+                Você tem direito de acessar, corrigir, atualizar ou excluir os seus dados pessoais a qualquer momento. Para exercer esses direitos, entre em contato conosco através dos meios disponibilizados na aplicação.
+            </p>
+            <label>
+                <input type="checkbox" name="direitos_usuario" required (click)="acceptPersonalDataManage = !acceptPersonalDataManage" (onchange)="verifyAcceptTermsAndConditions()">
+                Eu entendo que tenho direito de acessar, corrigir e excluir meus dados pessoais.
+            </label>
+        </section>
+        <hr>
+        <section>
+            <h6>7. Alterações nos Termos e Condições</h6>
+            <p>
+                Nós nos reservamos o direito de modificar estes Termos e Condições a qualquer momento. Quaisquer alterações serão publicadas nesta página, e a data de vigência será atualizada. Recomendamos que você revise periodicamente esta página para ficar ciente de quaisquer mudanças.
+            </p>
+            <label>
+                <input type="checkbox" name="alteracoes_termos" required (click)="acceptPersonalDataChanges = !acceptPersonalDataChanges" (onchange)="verifyAcceptTermsAndConditions()">
+                Eu concordo com as possíveis alterações nos Termos e Condições.
+            </label>
+        </section>
+        <hr>
+        <section>
+            <h6>8. Aceitação</h6>
+            <p>
+                Ao clicar em "Aceitar" ou continuar o uso da aplicação, você confirma que leu, entendeu e concorda com os Termos e Condições de Uso e com a coleta de dados conforme descrito acima.
+            </p>
+            <label>
+                <input type="checkbox" name="aceitacao_termos" required (click)="acceptPersonalDataGeral = !acceptPersonalDataGeral" (onchange)="verifyAcceptTermsAndConditions()">
+                Eu li, entendi e aceito os Termos e Condições de Uso e a coleta de dados.
+            </label>
+        </section>
+        <hr>
+        <div class="buttonDiv">
+            <button class="search-button" (click)="goCadastroDadosPessoais()" disabled="acceptTermsAndConditions">Continuar</button>
+        </div>
+    </div>
+</main>

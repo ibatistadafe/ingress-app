@@ -60,6 +60,16 @@ input[type=number]::-webkit-inner-spin-button {
   cursor: pointer;
 }
 
+.search-button-qr {
+  margin-top: 1rem;
+  padding: 10px 20px;
+  background-color: #000000;
+  color: white;
+  border: none;
+  font-weight: 500; 
+  cursor: pointer;
+}
+
 .search-button:hover {
   background-color: #444242;
   transition: 0.2s;

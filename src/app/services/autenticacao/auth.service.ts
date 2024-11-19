@@ -8,7 +8,7 @@ import { Observable, of, tap } from 'rxjs';
 })
 export class AuthService {
 
-  private apiUrl = 'http://localhost:3000';
+  private apiUrl = 'https://4361-2804-7f0-471-c2d-6bad-6cd7-e100-8670.ngrok-free.app';
 
   constructor(private http: HttpClient,
   ) { }

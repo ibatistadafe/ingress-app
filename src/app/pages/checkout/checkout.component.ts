@@ -3,11 +3,12 @@ import { HeaderComponent } from '../../components/header/header.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Ticket, TicketsPackage } from '../../model/eventos/eventos.model';
 import { CommonModule } from '@angular/common';
+import { QRCodeModule } from 'angularx-qrcode';
 
 @Component({
   selector: 'app-checkout',
   standalone: true,
-  imports: [HeaderComponent, CommonModule],
+  imports: [HeaderComponent, CommonModule, QRCodeModule],
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.scss']
 })
